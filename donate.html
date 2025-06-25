@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <title>Jubayr Learning Center - Donate</title>
+  <link rel="stylesheet" href="css/style.css?v=1.1.2" />
+  <link rel="stylesheet" href="css/donation.css" />
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+        <a href="parent-portal.html" class="header__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </a>
+        <div class="header__navigation">
+          <div class="header__menu menu">
+            <nav class="menu__body">
+              <button type="button" class="menu__close" aria-label="Close menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <ul class="menu__list">
+                <li class="menu__item"><a href="parent-portal.html" class="menu__link">Home</a></li>
+                <li class="menu__item"><a href="about.html" class="menu__link">About</a></li>
+                <li class="menu__item"><a href="services.html" class="menu__link">Services</a></li>
+                <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
+                <li class="menu__item"><a href="donate.html" class="actions-header__button">Donate</a></li>
+                <li class="menu__item"><button onclick="logout()" class="menu__link" style="background: none; border: none; cursor: pointer; color: #ff6b6b;">Logout</button></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header__actions actions-header">
+            <button type="button" class="menu__icon" aria-label="Open menu"><span></span></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="page">
+      <section class="page__main main main_donate main_pages">
+        <div class="main__container main__container_pages">
+          <h1 class="main__title">Support Our Educational Mission</h1>
+          <div class="main__text main__text_pages">
+            Your donation helps us continue providing quality education and building strong learners in our community.
+          </div>
+        </div>
+      </section>
+      <section class="page__donate donate">
+        <div class="donate__container">
+          <div class="donate__content">
+            <h2 class="donate__title title">Choose Your Donation Type</h2>
+            <div class="donate__text">
+              <p>
+                Every contribution makes a difference in our students' educational journey. Whether you choose to make a one-time donation or support us monthly, 
+                your generosity helps us provide quality education and build strong learners.
+              </p>
+            </div>
+            
+            <!-- Donation Form -->
+            <div class="donation-form-container">
+              <div class="donation-tabs">
+                <button class="donation-tab active" data-tab="one-time">One-Time Donation</button>
+                <button class="donation-tab" data-tab="monthly">Monthly Donation</button>
+              </div>
+              
+              <form id="donation-form" class="donation-form">
+                <!-- Email Field -->
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+                
+                <!-- One-Time Donation Tab -->
+                <div id="one-time-tab" class="donation-tab-content active">
+                  <div class="form-group">
+                    <label for="one-time-amount">Donation Amount ($)</label>
+                    <input type="number" id="one-time-amount" name="amount" min="1" step="0.01" required placeholder="25.00">
+                  </div>
+                </div>
+                
+                <!-- Monthly Donation Tab -->
+                <div id="monthly-tab" class="donation-tab-content">
+                  <div class="form-group">
+                    <label>Monthly Amount</label>
+                    <div class="amount-options">
+                      <button type="button" class="amount-option" data-amount="20">$20</button>
+                      <button type="button" class="amount-option" data-amount="40">$40</button>
+                      <button type="button" class="amount-option" data-amount="60">$60</button>
+                    </div>
+                    <div class="custom-amount">
+                      <label for="monthly-amount">Custom Amount ($)</label>
+                      <input type="number" id="monthly-amount" name="monthly-amount" min="1" step="0.01" placeholder="Enter amount">
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Payment Element -->
+                <div class="form-group">
+                  <label>Payment Information</label>
+                  <div id="payment-element" class="payment-element">
+                    <!-- Stripe Elements will be inserted here -->
+                  </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" id="submit-button" class="donate__submit-btn button">
+                  <span id="button-text">Donate Now</span>
+                  <div id="spinner" class="spinner hidden"></div>
+                </button>
+                
+                <!-- Error Messages -->
+                <div id="payment-message" class="payment-message hidden"></div>
+              </form>
+            </div>
+            
+            <div class="donate__info">
+              <h3 class="donate__subtitle">Your Impact</h3>
+              <div class="donate__impact">
+                <div class="donate__impact-item">
+                  <strong>$25</strong> can provide educational supplies for one student
+                </div>
+                <div class="donate__impact-item">
+                  <strong>$50</strong> can support our learning programs for a week
+                </div>
+                <div class="donate__impact-item">
+                  <strong>$100</strong> can help us reach even more students in need
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="page__outro outro outro_donate">
+        <div class="outro__container">
+          <h2 class="outro__title title">Thank You for Supporting Education</h2>
+          <div class="outro__text">
+            Your generosity makes our educational mission possible. Together, we can make a lasting difference in our students' lives and build strong learners for the future.
+          </div>
+          <a href="contact.html" class="outro__button button">Contact Us</a>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+        <a href="parent-portal.html" class="footer__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </a>
+        <div class="footer__copyright">&copy; 2025 Jubayr Learning Center – All Rights Reserved</div>
+      </div>
+    </footer>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/donation.js"></script>
+</body>
+
+</html> 

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <title>Thank You - Jubayr Learning Center</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .thank-you-container {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .thank-you-icon {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #5ebaf3, #4a9fd8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: white;
+      font-size: 3rem;
+      box-shadow: 0 8px 32px rgba(94, 186, 243, 0.3);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .thank-you-title {
+      font-size: 3rem;
+      font-weight: 600;
+      color: #303a4d;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #303a4d, #5ebaf3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .thank-you-subtitle {
+      font-size: 1.5rem;
+      color: #5ebaf3;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    
+    .donation-details {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border-left: 4px solid #5ebaf3;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .donation-details:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .donation-amount {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #5ebaf3;
+      margin-bottom: 0.5rem;
+    }
+    
+    .donation-type {
+      font-size: 1.2rem;
+      color: #666;
+      text-transform: capitalize;
+    }
+    
+    .thank-you-message {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #303a4d;
+      margin-bottom: 3rem;
+    }
+    
+    .impact-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #e9ecef;
+    }
+    
+    .impact-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #303a4d;
+      margin-bottom: 1rem;
+    }
+    
+    .impact-list {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+    
+    .impact-list li {
+      padding: 0.5rem 0;
+      color: #666;
+      position: relative;
+      padding-left: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .impact-list li:hover {
+      color: #5ebaf3;
+    }
+    
+    .impact-list li::before {
+      content: "✓";
+      color: #5ebaf3;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    
+    .action-button {
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .primary-button {
+      background: linear-gradient(135deg, #5ebaf3, #4a9fd8);
+      color: white;
+      box-shadow: 0 4px 12px rgba(94, 186, 243, 0.3);
+    }
+    
+    .primary-button:hover {
+      background: linear-gradient(135deg, #4a9fd8, #3d8bc7);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(94, 186, 243, 0.4);
+    }
+    
+    .secondary-button {
+      background: transparent;
+      color: #5ebaf3;
+      border: 2px solid #5ebaf3;
+    }
+    
+    .secondary-button:hover {
+      background: #5ebaf3;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(94, 186, 243, 0.4);
+    }
+    
+    @media (max-width: 768px) {
+      .thank-you-title {
+        font-size: 2rem;
+      }
+      
+      .thank-you-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .donation-amount {
+        font-size: 2rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .action-button {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+        <a href="parent-portal.html" class="header__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </a>
+        <div class="header__navigation">
+          <div class="header__menu menu">
+            <nav class="menu__body">
+              <ul class="menu__list">
+                <li class="menu__item"><a href="parent-portal.html" class="menu__link">Home</a></li>
+                <li class="menu__item"><a href="about.html" class="menu__link">About</a></li>
+                <li class="menu__item"><a href="services.html" class="menu__link">Services</a></li>
+                <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
+                <li class="menu__item"><a href="donate.html" class="actions-header__button">Donate</a></li>
+                <li class="menu__item"><button onclick="logout()" class="menu__link" style="background: none; border: none; cursor: pointer; color: #ff6b6b;">Logout</button></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header__actions actions-header">
+            <button type="button" class="menu__icon"><span></span></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <main class="page">
+      <section class="page__main main main_pages">
+        <div class="main__container main__container_pages">
+          <div class="thank-you-container">
+            <div class="thank-you-icon">✓</div>
+            
+            <h1 class="thank-you-title">Thank You!</h1>
+            <p class="thank-you-subtitle">Your donation has been processed successfully</p>
+            
+            <div class="donation-details">
+              <div class="donation-amount" id="donation-amount">$25.00</div>
+              <div class="donation-type" id="donation-type">One-time donation</div>
+            </div>
+            
+            <div class="thank-you-message">
+              <p>Your generous contribution will make a real difference in our students' educational journey. 
+              Your support helps us provide quality education and build strong learners in our community.</p>
+            </div>
+            
+            <div class="impact-section">
+              <h3 class="impact-title">Your Impact</h3>
+              <ul class="impact-list">
+                <li>Supporting our daily learning programs</li>
+                <li>Providing educational resources and materials</li>
+                <li>Helping students develop critical thinking skills</li>
+                <li>Building confidence and academic success</li>
+                <li>Creating a nurturing learning environment</li>
+              </ul>
+            </div>
+            
+            <div class="action-buttons">
+              <a href="parent-portal.html" class="action-button primary-button">Return to Home</a>
+              <a href="donate.html" class="action-button secondary-button">Make Another Donation</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="footer">
+      <div class="footer__container">
+        <a href="parent-portal.html" class="footer__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </a>
+        <div class="footer__copyright">&copy; 2025 Jubayr Learning Center – All Rights Reserved</div>
+      </div>
+    </footer>
+  </div>
+  
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    // Parse URL parameters to display donation details
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const amount = urlParams.get('amount');
+      const type = urlParams.get('type');
+      
+      if (amount) {
+        const formattedAmount = parseFloat(amount).toFixed(2);
+        document.getElementById('donation-amount').textContent = `$${formattedAmount}`;
+      } else {
+        // If no amount provided, show a generic message
+        document.getElementById('donation-amount').textContent = 'Your donation';
+        document.getElementById('donation-type').textContent = 'Thank you for your support';
+      }
+      
+      if (type) {
+        const formattedType = type === 'monthly' ? 'Monthly donation' : 'One-time donation';
+        document.getElementById('donation-type').textContent = formattedType;
+      }
+      
+      // Clear URL parameters to prevent showing donation details on page refresh
+      window.history.replaceState({}, document.title, window.location.pathname);
+    });
+  </script>
+</body>
+
+</html> 

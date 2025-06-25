@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Jubayr Learning Center</title>
+  <link rel="stylesheet" href="css/style.css?v=1.1.3" />
+  <style>
+    .public-hero {
+      background: linear-gradient(135deg, #5ebaf3 0%, #1a355b 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .public-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1523240798131-11371ef1b6c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+      opacity: 0.3;
+      z-index: 1;
+    }
+    
+    .public-hero > div {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .public-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .public-hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    
+    .public-content {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .public-section {
+      margin-bottom: 4rem;
+    }
+    
+    .public-section h2 {
+      color: #1a355b;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .public-section p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #333;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .feature-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+    }
+    
+    .feature-card h3 {
+      color: #1a355b;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .stats-section {
+      background: #f8f9fa;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .stat-item {
+      padding: 1rem;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #5ebaf3;
+      display: block;
+    }
+    
+    .stat-label {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    
+    .login-section {
+      background: #f8f9fa;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    .login-form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .login-form h3 {
+      color: #1a355b;
+      margin-bottom: 1.5rem;
+    }
+    
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    
+    .login-form input:focus {
+      outline: none;
+      border-color: #5ebaf3;
+    }
+    
+    .login-btn {
+      background: #5ebaf3;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .login-btn:hover {
+      background: #1a355b;
+      transform: translateY(-2px);
+    }
+    
+    .contact-info {
+      background: #1a355b;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .contact-info h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .contact-info p {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Ensure logos on public page don't show pointer cursor */
+    .header__logo,
+    .footer__logo {
+      cursor: default !important;
+    }
+    
+    .header__logo .logo-text:hover,
+    .footer__logo .logo-text:hover {
+      cursor: default !important;
+    }
+    
+    @media (max-width: 768px) {
+      .public-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .public-hero p {
+        font-size: 1rem;
+      }
+      
+      .public-section h2 {
+        font-size: 2rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+        <div class="header__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="public-hero">
+        <div>
+          <h1>Jubayr Learning Center</h1>
+          <p>A family-centered educational program dedicated to building strong learners through personalized attention and collaborative learning experiences.</p>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="public-content">
+        <div class="public-section">
+          <h2>About Our Center</h2>
+          <p>
+            Jubayr Learning Center (JLC) is a community-focused educational program that supports students through comprehensive teaching and homework assistance. 
+            We believe in creating an engaging learning environment where every student can thrive and develop their academic potential.
+          </p>
+        </div>
+
+        <div class="public-section">
+          <h2>Our Programs</h2>
+          <p>
+            We offer structured daily learning sessions, dedicated homework support, and comprehensive Islamic studies. 
+            Our programs are designed to enhance academic skills and foster spiritual growth in a supportive learning environment.
+          </p>
+          
+          <div class="features-grid">
+            <div class="feature-card">
+              <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Daily Lessons" class="feature-image">
+              <h3>Daily Lessons</h3>
+              <p>Structured learning sessions designed to enhance academic skills and foster a love for knowledge through interactive teaching methods.</p>
+            </div>
+            
+            <div class="feature-card">
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Homework Support" class="feature-image">
+              <h3>Homework Support</h3>
+              <p>Dedicated assistance to help students complete assignments, understand concepts, and develop strong study habits for academic success.</p>
+            </div>
+            
+            <div class="feature-card">
+              <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Islamic Studies" class="feature-image">
+              <h3>Islamic Studies</h3>
+              <p>Comprehensive Islamic education that nurtures spiritual growth alongside academic development in a supportive learning environment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <h2>Why Choose Jubayr Learning Center?</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Students Served</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years of Excellence</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Parent Satisfaction</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1:8</span>
+            <span class="stat-label">Student-Teacher Ratio</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Parent Access Section -->
+      <section class="login-section">
+        <div class="login-form">
+          <h3>Parent Portal Access</h3>
+          <p style="margin-bottom: 1.5rem; color: #666;">Current families can access detailed information, updates, and resources.</p>
+          <form id="parent-login">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="login-btn">Access Parent Portal</button>
+          </form>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+            Need access? Contact us for login credentials.
+          </p>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact-info">
+        <h3>Contact Information</h3>
+        <p>For general inquiries about our programs and enrollment:</p>
+        <p><strong>Email:</strong> info@jubayrlearningcenter.com</p>
+        <p><strong>Phone:</strong> (555) 123-4567</p>
+        <p><strong>Hours:</strong> Monday - Friday, 8:00 AM - 6:00 PM</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </div>
+        <div class="footer__copyright">&copy; 2025 Jubayr Learning Center – All Rights Reserved</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('parent-login').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      // Simple password check (you can make this more secure)
+      if (username === 'parent' && password === 'jubayr2025') {
+        // Store login state
+        localStorage.setItem('parentLoggedIn', 'true');
+        // Redirect to the main site
+        window.location.href = 'parent-portal.html';
+      } else {
+        alert('Invalid credentials. Please contact us for access.');
+      }
+    });
+  </script>
+</body>
+
+</html> 

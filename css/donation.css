@@ -1,0 +1,320 @@
+/* Donation Form Styles */
+.donation-form-container {
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(94, 186, 243, 0.15);
+  overflow: hidden;
+}
+
+.donation-tabs {
+  display: flex;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e1e4eb;
+}
+
+.donation-tab {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+  font-size: 1rem;
+}
+
+.donation-tab.active {
+  background-color: #5ebaf3;
+  color: white;
+}
+
+.donation-tab:hover:not(.active) {
+  background-color: #e9ecef;
+  color: #303a4d;
+}
+
+.donation-form {
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #303a4d;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e1e4eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #5ebaf3;
+  box-shadow: 0 0 0 3px rgba(94, 186, 243, 0.1);
+}
+
+.donation-tab-content {
+  display: none;
+}
+
+.donation-tab-content.active {
+  display: block;
+}
+
+/* Amount Options for Monthly */
+.amount-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.amount-option {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e1e4eb;
+  background: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #303a4d;
+}
+
+.amount-option:hover,
+.amount-option.active {
+  border-color: #5ebaf3;
+  background-color: #5ebaf3;
+  color: white;
+}
+
+.custom-amount {
+  margin-top: 1rem;
+}
+
+/* Stripe Elements Styling */
+.payment-element {
+  padding: 20px;
+  border: 2px solid #e1e4eb;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 20px;
+  min-height: 300px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Stripe Elements container */
+#payment-element {
+  min-height: 300px;
+  width: 100%;
+  display: block;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Ensure payment element is always visible */
+.payment-element {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Stripe Elements specific styling - REMOVED TO PRESERVE PAYMENT METHOD ICONS */
+
+/* Submit Button */
+.donate__submit-btn {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #5ebaf3;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.donate__submit-btn:hover:not(:disabled) {
+  background: #4a9fd8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(94, 186, 243, 0.4);
+}
+
+.donate__submit-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Payment Message */
+.payment-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.payment-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.payment-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .donation-form {
+    padding: 1.5rem;
+  }
+  
+  .amount-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .donation-tab {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .donation-form {
+    padding: 1rem;
+  }
+  
+  .amount-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .donation-tabs {
+    flex-direction: column;
+  }
+  
+  .donation-tab {
+    border-radius: 0;
+  }
+}
+
+/* Loading States */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Success Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-animation {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Prevent layout shifts */
+.payment-element {
+  min-height: 200px;
+  transition: none;
+}
+
+/* Fallback for when Stripe Elements are loading */
+#payment-element:empty::before {
+  content: "Loading payment form...";
+  display: block;
+  text-align: center;
+  padding: 100px 20px;
+  color: #666;
+  font-style: italic;
+  font-size: 16px;
+}
+
+/* Loading state for payment element */
+#payment-element.loading::before {
+  content: "Loading payment form...";
+  display: block;
+  text-align: center;
+  padding: 100px 20px;
+  color: #666;
+  font-style: italic;
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 10;
+}
+
+/* Ensure payment element container has proper spacing */
+.form-group:has(#payment-element) {
+  margin-bottom: 30px;
+}
+
+/* Payment element label styling */
+.form-group:has(#payment-element) label {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #303a4d;
+} 

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Jubayr Learning Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            margin-left: 15px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00b1e6;
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            padding: 10px 0;
+        }
+
+        .nav-menu a:hover {
+            color: #00b1e6;
+        }
+
+        .nav-menu a.active {
+            color: #00b1e6;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #00b1e6 0%, #0693e3 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Story Section */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .story-content h3 {
+            font-size: 36px;
+            color: #00b1e6;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .story-content p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            margin: 80px -20px;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .video-section h3 {
+            font-size: 36px;
+            color: #00b1e6;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .video-section p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            max-width: 700px;
+            height: 400px;
+            background: linear-gradient(135deg, #00b1e6, #0693e3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00b1e6;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .play-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            margin: 80px -20px;
+        }
+
+        .mission-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .mission-section h4 {
+            font-size: 36px;
+            color: #00b1e6;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .mission-section p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            margin: 80px -20px;
+        }
+
+        .values-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .values-section h3 {
+            font-size: 36px;
+            color: #00b1e6;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .value-item {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00b1e6, #0693e3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .value-item h4 {
+            font-size: 24px;
+            color: #00b1e6;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .value-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #34373c;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h6 {
+            font-size: 20px;
+            color: #00b1e6;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #00b1e6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #00b1e6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #0693e3;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                height: 70px;
+            }
+
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .page-header h2 {
+                font-size: 32px;
+            }
+
+            .page-header p {
+                font-size: 16px;
+            }
+
+            .story-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .story-content h3 {
+                font-size: 28px;
+            }
+
+            .video-section h3 {
+                font-size: 28px;
+            }
+
+            .values-section h3 {
+                font-size: 28px;
+            }
+
+            .video-placeholder {
+                height: 300px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 100px 0 60px;
+            }
+
+            .page-header h2 {
+                font-size: 28px;
+            }
+
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .story-content h3 {
+                font-size: 24px;
+            }
+
+            .video-section {
+                padding: 60px 0;
+                margin: 60px -15px;
+            }
+
+            .video-placeholder {
+                height: 250px;
+            }
+
+            .value-item {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2300b1e6'/><text x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-weight='bold'>J</text></svg>" alt="Jubayr Learning Center Logo">
+                <div class="logo-text">
+                    <h1>Jubayr Learning Center</h1>
+                    <p>Empowering Students, One Lesson at a Time</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="jubayr-learning-center.html">Home</a></li>
+                    <li><a href="about-us.html" class="active">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                </ul>
+                <div class="mobile-menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h2>About Jubayr Learning Center</h2>
+        <p>Discover our story and learn about the values that drive our commitment to student success</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Our Story Section -->
+        <section class="story-section">
+            <div class="story-content">
+                <h3>Our Story</h3>
+                <p>Founded in 2018, Jubayr Learning Center began with a simple yet powerful vision: to create a learning environment where every child feels valued, understood, and empowered to reach their full potential.</p>
+                <p>What started as a small tutoring center in a local community has grown into a trusted educational partner for hundreds of families. Our journey has been driven by the success stories of our students – from struggling readers who discovered a love for books, to math-anxious students who gained confidence through personalized instruction.</p>
+                <p>Today, we continue to expand our programs and services while maintaining the personal touch and individualized attention that made us successful from the beginning. Our commitment to excellence and student-centered learning remains at the heart of everything we do.</p>
+            </div>
+            <div class="story-image">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23f0f8ff'/><circle cx='200' cy='150' r='50' fill='%2300b1e6' opacity='0.3'/><circle cx='100' cy='200' r='30' fill='%230693e3' opacity='0.2'/><circle cx='300' cy='250' r='40' fill='%2300b1e6' opacity='0.2'/><text x='200' y='220' text-anchor='middle' fill='%2300b1e6' font-size='24' font-weight='bold'>Learning Together</text><text x='200' y='250' text-anchor='middle' fill='%23666' font-size='16'>Students and tutors working</text><text x='200' y='270' text-anchor='middle' fill='%23666' font-size='16'>collaboratively in our center</text></svg>" alt="Students and tutors working together">
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <div class="video-container">
+                <h3>See Our Learning Center in Action</h3>
+                <p>Take a virtual tour of our facilities and see how we create an engaging, supportive environment where students thrive and develop a lifelong love for learning.</p>
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <div class="mission-content">
+                <h4>Our Mission</h4>
+                <p>To provide exceptional educational support that empowers students to reach their full potential. We are committed to creating a positive, engaging learning environment where every child feels valued, understood, and motivated to succeed. Through personalized attention and proven teaching methods, we help students build confidence, overcome challenges, and develop the skills they need for academic success and beyond.</p>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <div class="values-content">
+                <h3>Our Core Values</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Individualized Care</h4>
+                        <p>We believe every child is unique and deserves personalized attention that recognizes their strengths and addresses their specific needs.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Excellence</h4>
+                        <p>We maintain the highest standards in our teaching methods, curriculum, and student support to ensure the best possible learning outcomes.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Partnership</h4>
+                        <p>We work closely with parents, teachers, and students to create a collaborative learning environment that supports academic success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h6>Contact Information</h6>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Learning Street, Education City, EC 12345</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@jubayrlearning.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 7:00 PM</p>
+            </div>
+            <div class="footer-section">
+                <h6>Quick Links</h6>
+                <p><a href="jubayr-learning-center.html">Home</a></p>
+                <p><a href="about-us.html">About Us</a></p>
+                <p><a href="programs.html">Programs</a></p>
+                <p><a href="#contact">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h6>Follow Us</h6>
+                <p>Stay connected with us on social media for updates, tips, and educational resources.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Jubayr Learning Center. All rights reserved. | Empowering Students, One Lesson at a Time</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // Video placeholder click handler
+        document.querySelector('.play-button').addEventListener('click', function() {
+            alert('Video player would open here. This is a placeholder for demonstration purposes.');
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs - Jubayr Learning Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            margin-left: 15px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00b1e6;
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            padding: 10px 0;
+        }
+
+        .nav-menu a:hover {
+            color: #00b1e6;
+        }
+
+        .nav-menu a.active {
+            color: #00b1e6;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #00b1e6 0%, #0693e3 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Programs Overview */
+        .programs-overview {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .programs-overview h3 {
+            font-size: 36px;
+            color: #00b1e6;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .programs-overview p {
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Program Cards */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .program-image {
+            height: 250px;
+            background: linear-gradient(135deg, #00b1e6, #0693e3);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 64px;
+        }
+
+        .program-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .program-content {
+            padding: 30px;
+        }
+
+        .program-content h4 {
+            font-size: 24px;
+            color: #00b1e6;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .program-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .program-features li {
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .program-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00b1e6;
+            font-weight: bold;
+        }
+
+        .program-button {
+            background: linear-gradient(135deg, #00b1e6, #0693e3);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .program-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,177,230,0.3);
+        }
+
+        /* Video Section */
+        .video-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            margin: 80px -20px;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .video-section h3 {
+            font-size: 36px;
+            color: #00b1e6;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .video-section p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .video-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #00b1e6, #0693e3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .play-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00b1e6;
+            font-size: 18px;
+            z-index: 2;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h5 {
+            font-size: 18px;
+            color: #00b1e6;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            margin: 80px 0;
+        }
+
+        .testimonials-section h3 {
+            font-size: 36px;
+            color: #00b1e6;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: #00b1e6;
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .testimonial-content {
+            margin-top: 20px;
+        }
+
+        .testimonial-text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00b1e6, #0693e3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .author-info h5 {
+            font-size: 16px;
+            color: #00b1e6;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: #34373c;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h6 {
+            font-size: 20px;
+            color: #00b1e6;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #00b1e6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #00b1e6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #0693e3;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                height: 70px;
+            }
+
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .page-header h2 {
+                font-size: 32px;
+            }
+
+            .page-header p {
+                font-size: 16px;
+            }
+
+            .programs-overview h3 {
+                font-size: 28px;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .video-section h3 {
+                font-size: 28px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-section h3 {
+                font-size: 28px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 100px 0 60px;
+            }
+
+            .page-header h2 {
+                font-size: 28px;
+            }
+
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .programs-overview {
+                margin-bottom: 60px;
+            }
+
+            .programs-overview h3 {
+                font-size: 24px;
+            }
+
+            .video-section {
+                padding: 60px 0;
+                margin: 60px -15px;
+            }
+
+            .program-card {
+                margin-bottom: 30px;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2300b1e6'/><text x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-weight='bold'>J</text></svg>" alt="Jubayr Learning Center Logo">
+                <div class="logo-text">
+                    <h1>Jubayr Learning Center</h1>
+                    <p>Empowering Students, One Lesson at a Time</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="jubayr-learning-center.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="programs.html" class="active">Programs</a></li>
+                </ul>
+                <div class="mobile-menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h2>Our Programs</h2>
+        <p>Discover our comprehensive range of tutoring services designed to meet every student's unique learning needs</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Programs Overview -->
+        <section class="programs-overview">
+            <h3>Comprehensive Learning Solutions</h3>
+            <p>At Jubayr Learning Center, we offer a wide range of educational programs designed to support students at every stage of their academic journey. From personalized one-on-one tutoring to specialized skill development, our programs are tailored to help students build confidence, improve performance, and develop a lifelong love for learning.</p>
+        </section>
+
+        <!-- Program Cards -->
+        <section class="programs-grid">
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Personalized Tutoring</h4>
+                    <p>One-on-one and small group sessions tailored to each student's unique learning style, pace, and academic goals.</p>
+                    <ul class="program-features">
+                        <li>Individualized lesson plans</li>
+                        <li>Progress tracking and assessment</li>
+                        <li>Flexible scheduling options</li>
+                        <li>Regular parent communication</li>
+                        <li>Subject-specific expertise</li>
+                    </ul>
+                    <a href="#" class="program-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Homework Support</h4>
+                    <p>Comprehensive homework assistance that goes beyond completing assignments to build understanding and study skills.</p>
+                    <ul class="program-features">
+                        <li>Daily homework help</li>
+                        <li>Study skills development</li>
+                        <li>Time management strategies</li>
+                        <li>Test preparation support</li>
+                        <li>Organization techniques</li>
+                    </ul>
+                    <a href="#" class="program-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Reading Enrichment</h4>
+                    <p>Engaging reading programs designed to improve comprehension, vocabulary, and critical thinking skills.</p>
+                    <ul class="program-features">
+                        <li>Phonics and decoding skills</li>
+                        <li>Reading comprehension strategies</li>
+                        <li>Vocabulary development</li>
+                        <li>Literature appreciation</li>
+                        <li>Reading fluency practice</li>
+                    </ul>
+                    <a href="#" class="program-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Math Mastery</h4>
+                    <p>Comprehensive math tutoring that builds strong foundations and develops problem-solving skills.</p>
+                    <ul class="program-features">
+                        <li>Concept-based learning</li>
+                        <li>Problem-solving strategies</li>
+                        <li>Mental math techniques</li>
+                        <li>Real-world applications</li>
+                        <li>Confidence building</li>
+                    </ul>
+                    <a href="#" class="program-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Writing Workshop</h4>
+                    <p>Creative and academic writing programs that help students express themselves clearly and effectively.</p>
+                    <ul class="program-features">
+                        <li>Essay writing skills</li>
+                        <li>Creative writing development</li>
+                        <li>Grammar and mechanics</li>
+                        <li>Editing and revision</li>
+                        <li>Writing confidence</li>
+                    </ul>
+                    <a href="#" class="program-button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="program-card">
+                <div class="program-image">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="program-content">
+                    <h4>Study Skills & Test Prep</h4>
+                    <p>Essential study techniques and test preparation strategies for academic success.</p>
+                    <ul class="program-features">
+                        <li>Note-taking methods</li>
+                        <li>Memory techniques</li>
+                        <li>Test-taking strategies</li>
+                        <li>Stress management</li>
+                        <li>Goal setting</li>
+                    </ul>
+                    <a href="#" class="program-button">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <div class="video-container">
+                <h3>See Our Programs in Action</h3>
+                <p>Watch these short videos to see how our programs help students succeed and build confidence in their learning journey.</p>
+                <div class="video-grid">
+                    <div class="video-item">
+                        <div class="video-placeholder" onclick="playVideo('personalized')">
+                            <div class="play-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h5>Personalized Tutoring Session</h5>
+                            <p>See how our tutors work one-on-one with students to address their specific learning needs.</p>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <div class="video-placeholder" onclick="playVideo('reading')">
+                            <div class="play-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h5>Reading Enrichment Program</h5>
+                            <p>Watch students engage in our interactive reading activities and comprehension exercises.</p>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <div class="video-placeholder" onclick="playVideo('math')">
+                            <div class="play-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h5>Math Mastery Workshop</h5>
+                            <p>Discover how we make math engaging and accessible through hands-on learning activities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <h3>What Parents and Students Say</h3>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"The personalized tutoring program has completely transformed my daughter's confidence in math. She went from struggling to loving the subject!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">M</div>
+                            <div class="author-info">
+                                <h5>Maria Rodriguez</h5>
+                                <p>Parent of 4th Grade Student</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"The reading enrichment program helped me improve my comprehension skills and now I actually enjoy reading books!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">A</div>
+                            <div class="author-info">
+                                <h5>Alex Thompson</h5>
+                                <p>6th Grade Student</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"The homework support program has been a lifesaver. My son now has better study habits and completes his work independently."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">J</div>
+                            <div class="author-info">
+                                <h5>Jennifer Chen</h5>
+                                <p>Parent of 3rd Grade Student</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h6>Contact Information</h6>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Learning Street, Education City, EC 12345</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@jubayrlearning.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 7:00 PM</p>
+            </div>
+            <div class="footer-section">
+                <h6>Quick Links</h6>
+                <p><a href="jubayr-learning-center.html">Home</a></p>
+                <p><a href="about-us.html">About Us</a></p>
+                <p><a href="programs.html">Programs</a></p>
+                <p><a href="#contact">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h6>Follow Us</h6>
+                <p>Stay connected with us on social media for updates, tips, and educational resources.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Jubayr Learning Center. All rights reserved. | Empowering Students, One Lesson at a Time</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // Video placeholder click handlers
+        function playVideo(type) {
+            const videoTitles = {
+                'personalized': 'Personalized Tutoring Session',
+                'reading': 'Reading Enrichment Program',
+                'math': 'Math Mastery Workshop'
+            };
+            alert(`Video player would open for: ${videoTitles[type]}\nThis is a placeholder for demonstration purposes.`);
+        }
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html> 

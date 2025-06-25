@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Jubayr Learning Center - Home</title>
+  <link rel="stylesheet" href="css/style.css?v=1.1.2" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+        <a href="parent-portal.html" class="header__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </a>
+        <div class="header__navigation">
+          <div class="header__menu menu">
+            <nav class="menu__body">
+              <button type="button" class="menu__close" aria-label="Close menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <ul class="menu__list">
+                <li class="menu__item"><a href="parent-portal.html" class="menu__link">Home</a></li>
+                <li class="menu__item"><a href="about.html" class="menu__link">About</a></li>
+                <li class="menu__item"><a href="services.html" class="menu__link">Services</a></li>
+                <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
+                <li class="menu__item"><a href="donate.html" class="actions-header__button">Donate</a></li>
+                <li class="menu__item"><button onclick="logout()" class="menu__link" style="background: none; border: none; cursor: pointer; color: #ff6b6b;">Logout</button></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header__actions actions-header">
+            <button type="button" class="menu__icon" aria-label="Open menu"><span></span></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="page">
+      <section class="page__main main">
+        <video class="main__video" autoplay muted loop playsinline>
+          <source src="videos/hingaad.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="main__video-overlay"></div>
+        <div class="main__container">
+          <img src="images/Asset-1-1.png.webp" alt="Welcome to Jubayr Learning Center" class="main__caption" style="max-width: 300px !important; width: 300px !important; height: auto !important; display: block !important; margin: 0 auto !important;" />
+          <h1 class="main__title">Welcome to Jubayr Learning Center</h1>
+          <div class="main__text">
+            We're grateful for your visit and excited to share a glimpse of our learning community. JLC is a family-centered educational program that supports students through teaching and homework help.
+          </div>
+        </div>
+      </section>
+      <section class="page__about about">
+        <div class="about__container">
+          <div class="about__image"><img src="images/PHOTO-2025-02-05-22-49-08.png" alt="JLC Learning Environment" /></div>
+          <div class="about__content">
+            <h2 class="about__title title">About Us</h2>
+            <div class="about__text">
+              <p>
+                We believe learning should be engaging, and we work together to build strong learners. Our family-centered approach creates a supportive environment where every student can thrive and develop their academic potential.
+              </p>
+              <p>
+                At JLC, we focus on critical thinking and building confidence through personalized attention and collaborative learning experiences that prepare students for future success.
+              </p>
+            </div>
+            <a href="donate.html" class="about__button button">Support Us</a>
+          </div>
+        </div>
+      </section>
+      <section class="page__services services">
+        <div class="services__container">
+          <h2 class="services__title title">Our Programs</h2>
+          <div class="services__row">
+            <div class="services__column">
+              <div class="services__item item-services">
+                <div class="item-services__image">
+                  <img src="images/PHOTO-2025-02-05-22-19-43.png" alt="Daily Lessons at JLC" />
+                </div>
+                <h3 class="item-services__title">Daily Lessons</h3>
+                <div class="item-services__text">
+                  Structured daily learning sessions designed to enhance academic skills and foster a love for knowledge through interactive teaching methods.
+                </div>
+                <a href="donate.html" class="item-services__button button">Donate</a>
+              </div>
+            </div>
+            <div class="services__column">
+              <div class="services__item item-services">
+                <div class="item-services__image">
+                  <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    <source src="videos/VIDEO-2023-08-02-14-28-53.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <h3 class="item-services__title">Homework Support</h3>
+                <div class="item-services__text">
+                  Dedicated assistance to help students complete assignments, understand concepts, and develop strong study habits for academic success.
+                </div>
+                <a href="donate.html" class="item-services__button button">Donate</a>
+              </div>
+            </div>
+            <div class="services__column">
+              <div class="services__item item-services">
+                <div class="item-services__image">
+                  <img src="images/PHOTO-2025-06-18-16-13-09.png" alt="Islamic Studies at JLC" />
+                </div>
+                <h3 class="item-services__title">Islamic Studies</h3>
+                <div class="item-services__text">
+                  Comprehensive Islamic education that nurtures spiritual growth alongside academic development in a supportive learning environment.
+                </div>
+                <a href="donate.html" class="item-services__button button">Donate</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="page__testimonial testimonial">
+        <div class="testimonial__container">
+          <h3 class="testiomonial__caption">Testimonials</h3>
+          
+          <div class="testimonial__slider">
+            <div class="testimonial__slide testimonial__slide_active" data-slide="1">
+              <h2 class="testimonial__title title">
+                "JLC has transformed my child's learning experience. The teachers are dedicated, the environment is nurturing, and the academic growth we've seen is remarkable."
+              </h2>
+              <div class="testimonial__item item-testimonial">
+                <div class="item-testimonial__image">
+                  <img src="img/home/user.png" alt="user" />
+                </div>
+                <h4 class="item-testimonial__title">Sarah Ahmed</h4>
+                <div class="item-testimonial__caption">JLC Parent</div>
+              </div>
+            </div>
+            
+            <div class="testimonial__slide" data-slide="2">
+              <h2 class="testimonial__title title">
+                "The family-centered approach at JLC has made such a difference. My children love coming here and their confidence has grown tremendously."
+              </h2>
+              <div class="testimonial__item item-testimonial">
+                <div class="item-testimonial__image">
+                  <img src="img/home/user.png" alt="user" />
+                </div>
+                <h4 class="item-testimonial__title">Fatima Hassan</h4>
+                <div class="item-testimonial__caption">JLC Parent</div>
+              </div>
+            </div>
+            
+            <div class="testimonial__slide" data-slide="3">
+              <h2 class="testimonial__title title">
+                "The combination of academic excellence and Islamic values creates the perfect learning environment. We're so grateful for JLC."
+              </h2>
+              <div class="testimonial__item item-testimonial">
+                <div class="item-testimonial__image">
+                  <img src="img/home/user.png" alt="user" />
+                </div>
+                <h4 class="item-testimonial__title">Aisha Rahman</h4>
+                <div class="item-testimonial__caption">JLC Parent</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial__navigation">
+            <button class="testimonial__arrow testimonial__arrow_prev" aria-label="Previous testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="testimonial__dots">
+              <button class="testimonial__dot testimonial__dot_active" data-slide="1" aria-label="Go to testimonial 1"></button>
+              <button class="testimonial__dot" data-slide="2" aria-label="Go to testimonial 2"></button>
+              <button class="testimonial__dot" data-slide="3" aria-label="Go to testimonial 3"></button>
+            </div>
+            <button class="testimonial__arrow testimonial__arrow_next" aria-label="Next testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="page__outro outro outro_home">
+        <div class="outro__background-image">
+          <img src="images/compressed-IMG_3267.jpg" alt="JLC Learning Community" />
+        </div>
+        <div class="outro__container">
+          <h2 class="outro__title title">Join Our Learning Community</h2>
+          <div class="outro__text">
+            Ready to be part of our educational journey? Contact us to learn more about enrollment, programs, or how you can support our mission to build strong learners.
+          </div>
+          <a href="contact.html" class="outro__button button">Contact Us</a>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+        <a href="parent-portal.html" class="footer__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </a>
+        <div class="footer__copyright">&copy; 2025 Jubayr Learning Center – All Rights Reserved</div>
+      </div>
+    </footer>
+  </div>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
