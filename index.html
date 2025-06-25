@@ -645,13 +645,6 @@
                 console.log('Video failed to load, falling back to background');
                 document.querySelector('.hero-banner').style.background = 'linear-gradient(135deg, #00b1e6 0%, #0693e3 100%)';
             });
-
-            // Pause video on mobile to save bandwidth
-            if (window.innerWidth <= 768) {
-                heroVideo.pause();
-                heroVideo.style.display = 'none';
-                document.querySelector('.hero-banner').style.background = 'linear-gradient(135deg, #00b1e6 0%, #0693e3 100%)';
-            }
         }
 
         // Smooth scrolling for navigation links
