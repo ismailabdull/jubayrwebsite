@@ -452,13 +452,13 @@ async function handleSubmit(e) {
             // For one-time payments, use confirmPayment
             console.log('💳 Confirming payment...');
             result = await stripe.confirmPayment({
-                elements,
-                confirmParams: {
-                    return_url: `${window.location.origin}/thank-you.html?amount=${finalAmount}&type=${donationType}`,
-                    receipt_email: email,
-                },
-                redirect: 'if_required'
-            });
+            elements,
+            confirmParams: {
+                return_url: `${window.location.origin}/thank-you.html?amount=${finalAmount}&type=${donationType}`,
+                receipt_email: email,
+            },
+            redirect: 'if_required'
+        });
         }
         
         const { error } = result;
