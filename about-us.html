@@ -40,21 +40,22 @@
             align-items: center;
             height: 80px;
             position: relative;
-            overflow: visible;
+            overflow: hidden;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            margin-left: -60px;
-            position: relative;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 10;
         }
 
         .logo img {
             height: 200px;
             width: auto;
-            margin-top: 20px;
             display: block;
         }
 
