@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Abel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preload" as="image" href="images/Untitled design.png">
     <style>
         * {
             margin: 0;
@@ -39,22 +40,29 @@
             justify-content: space-between;
             align-items: center;
             height: 80px;
+            position: relative;
         }
 
         .logo {
             display: flex;
             align-items: center;
             margin-left: -60px;
+            position: relative;
+            z-index: 10;
         }
 
         .logo img {
             height: 200px !important;
-            width: auto !important;
+            width: 200px !important;
             margin-top: 20px !important;
+            display: block !important;
+            position: relative !important;
+            background: #fff;
         }
 
         .logo-text {
             margin-left: -55px !important;
+            position: relative !important;
         }
 
         .logo-text h1 {
@@ -497,7 +505,7 @@
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <img src="images/Untitled design.png" alt="Jubayr Learning Center Logo">
+                <img src="images/Untitled design.png" alt="Jubayr Learning Center Logo" width="200" height="200" style="margin-top:20px;">
                 <div class="logo-text">
                     <h1>Jubayr Learning Center</h1>
                     <p>Empowering Students, One Lesson at a Time</p>
