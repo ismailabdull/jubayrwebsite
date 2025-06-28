@@ -322,6 +322,64 @@
     }
 
     /* Donate Page Specific Styles */
+    
+    /* Security Features Styling */
+    .security-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .security-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .security-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .security-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    
+    .security-item strong {
+      display: block;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .security-item p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .security-features {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .security-item {
+        padding: 1rem;
+      }
+      
+      .security-icon {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 
@@ -443,17 +501,34 @@
       </section>
       <section class="page__outro outro outro_donate">
         <div class="outro__container">
-          <h2 class="outro__title title">Thank You for Supporting Education</h2>
+          <h2 class="outro__title title">Secure & Transparent Donations</h2>
           <div class="outro__text">
-            Your generosity makes our educational mission possible. Together, we can make a lasting difference in our students' lives and build strong learners for the future.
+            <p>Your donations are processed securely through Stripe, a trusted payment processor used by millions of organizations worldwide. We are committed to transparency and will provide you with a receipt for your tax-deductible contribution.</p>
+            
+            <div class="security-features">
+              <div class="security-item">
+                <span class="security-icon">🔒</span>
+                <strong>Secure Processing</strong>
+                <p>All payments are encrypted and processed securely</p>
+              </div>
+              <div class="security-item">
+                <span class="security-icon">📧</span>
+                <strong>Email Receipt</strong>
+                <p>You'll receive a detailed receipt via email</p>
+              </div>
+              <div class="security-item">
+                <span class="security-icon">📊</span>
+                <strong>Impact Tracking</strong>
+                <p>We'll share how your donation makes a difference</p>
+              </div>
+            </div>
           </div>
-          <a href="contact.html" class="outro__button button">Contact Us</a>
         </div>
       </section>
     </main>
     <footer class="footer">
       <div class="footer__container">
-        <a href="parent-portal.html" class="footer__logo logo">
+        <a href="parent-portal-home.html" class="footer__logo logo">
           <div class="logo-container">
             <span class="logo-text">Jubayr Learning Center</span>
           </div>
