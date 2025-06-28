@@ -4,57 +4,283 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <title>Jubayr Learning Center - Donate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Abel&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1.1.2" />
   <link rel="stylesheet" href="css/donation.css" />
   <!-- Stripe.js -->
   <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    .header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      height: 80px;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      position: relative;
+    }
+
+    .header-container nav {
+      margin-right: -200px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-left: -20px;
+    }
+
+    .logo-image {
+      height: 50px !important;
+      width: 50px !important;
+      display: block !important;
+      margin-right: 15px !important;
+    }
+
+    .logo-text {
+      margin-left: 0 !important;
+      position: relative !important;
+    }
+
+    .logo-text h1 {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 700 !important;
+      color: #00b1e6 !important;
+      margin: 0 !important;
+      cursor: default !important;
+      pointer-events: none !important;
+      text-transform: none !important;
+      transition: none !important;
+      transform: none !important;
+      text-shadow: none !important;
+      line-height: normal !important;
+      letter-spacing: normal !important;
+    }
+
+    .logo-text p {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 12px !important;
+      font-weight: normal !important;
+      color: #666 !important;
+      margin: 0 !important;
+      cursor: default !important;
+      pointer-events: none !important;
+      text-transform: none !important;
+      transition: none !important;
+      transform: none !important;
+      text-shadow: none !important;
+      line-height: normal !important;
+      letter-spacing: normal !important;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s ease;
+      padding: 10px 0;
+    }
+
+    .nav-menu a:hover {
+      color: #00b1e6;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* Override any conflicting styles from main CSS */
+    .logo-text {
+      text-transform: none !important;
+    }
+
+    .logo-text * {
+      text-transform: none !important;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .logo-text h1 {
+        font-size: 20px;
+      }
+    }
+
+    /* Fix spacing for fixed navbar */
+    .page {
+      padding-top: 0 !important;
+    }
+    
+    .page__main {
+      margin-top: 0 !important;
+    }
+    
+    .main {
+      padding-top: 0 !important;
+    }
+    
+    .main__container {
+      padding-top: 5rem !important;
+    }
+    
+    /* Remove conflicting header styles */
+    .header {
+      height: 5rem !important;
+      min-height: 5rem !important;
+      max-height: 5rem !important;
+    }
+    
+    .header__container {
+      height: 5rem !important;
+      min-height: 5rem !important;
+      max-height: 5rem !important;
+    }
+    
+    /* Reduce logo text size */
+    /* Remove conflicting header__logo styles */
+    
+    /* Reduce navigation button sizes */
+    .menu__link, .actions-header__button {
+      font-size: 16px !important;
+      padding: 6px 0 !important;
+    }
+    
+    /* Adjust spacing for smaller navbar */
+    .menu__list {
+      gap: 18px !important;
+    }
+
+    /* Remove all header__logo styles that conflict with landing page logo styles */
+
+    /* Reduce the height/capacity of the main section under navbar */
+    .main {
+      min-height: 70vh !important;
+      max-height: 70vh !important;
+    }
+    
+    .main__container {
+      padding-top: 2rem !important;
+      min-height: 60vh !important;
+      max-height: 60vh !important;
+    }
+    
+    /* Ensure video fills the entire reduced box */
+    .main__video {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      object-fit: cover !important;
+    }
+    
+    .main__video-overlay {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+
+    /* Donate Page Specific Styles */
+  </style>
 </head>
 
 <body>
   <div class="wrapper">
     <header class="header">
-      <div class="header__container">
-        <a href="parent-portal.html" class="header__logo logo">
-          <div class="logo-container">
-            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
-            <span class="logo-text">Jubayr Learning Center</span>
-          </div>
-        </a>
-        <div class="header__navigation">
-          <div class="header__menu menu">
-            <nav class="menu__body">
-              <button type="button" class="menu__close" aria-label="Close menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <ul class="menu__list">
-                <li class="menu__item"><a href="parent-portal.html" class="menu__link">Home</a></li>
-                <li class="menu__item"><a href="about.html" class="menu__link">About</a></li>
-                <li class="menu__item"><a href="services.html" class="menu__link">Services</a></li>
-                <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
-                <li class="menu__item"><a href="donate.html" class="actions-header__button">Donate</a></li>
-                <li class="menu__item"><button onclick="logout()" class="menu__link" style="background: none; border: none; cursor: pointer; color: #ff6b6b;">Logout</button></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="header__actions actions-header">
-            <button type="button" class="menu__icon" aria-label="Open menu"><span></span></button>
+      <div class="header-container">
+        <div class="logo">
+          <img src="images/android-chrome-192x192.png" alt="Jubayr Learning Center Logo" class="logo-image">
+          <div class="logo-text">
+            <h1>Jubayr Learning Center</h1>
+            <p>Empowering Students, One Lesson at a Time</p>
           </div>
         </div>
+        <nav>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="parent-portal-home.html">Home</a></li>
+            <li><a href="parent-portal-classes.html">Classes & Schedule</a></li>
+            <li><a href="parent-portal-policies.html">Policies</a></li>
+            <li><a href="parent-portal-media.html">Media & Highlights</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><button onclick="logout()" style="background: none; border: none; cursor: pointer; color: #ff6b6b; font-family: inherit; font-size: inherit;">Logout</button></li>
+          </ul>
+          <div class="mobile-menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
       </div>
     </header>
     <main class="page">
-      <section class="page__main main main_donate main_pages">
-        <div class="main__container main__container_pages">
-          <h1 class="main__title">Support Our Educational Mission</h1>
-          <div class="main__text main__text_pages">
-            Your donation helps us continue providing quality education and building strong learners in our community.
-          </div>
-        </div>
-      </section>
       <section class="page__donate donate">
         <div class="donate__container">
           <div class="donate__content">
@@ -154,7 +380,6 @@
       <div class="footer__container">
         <a href="parent-portal.html" class="footer__logo logo">
           <div class="logo-container">
-            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
             <span class="logo-text">Jubayr Learning Center</span>
           </div>
         </a>
@@ -164,9 +389,22 @@
   </div>
   
   <!-- Scripts -->
+  <script src="js/donation.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/script.js"></script>
-  <script src="js/donation.js"></script>
+  <script>
+    function toggleMenu() {
+      const navMenu = document.getElementById('navMenu');
+      navMenu.classList.toggle('active');
+    }
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navMenu').classList.remove('active');
+      });
+    });
+  </script>
 </body>
 
 </html> 

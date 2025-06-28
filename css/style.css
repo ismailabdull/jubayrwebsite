@@ -37,12 +37,16 @@
 }
 
 .logo-image {
-  height: 180px !important;
+  height: 5rem !important;
+  max-height: 5rem !important;
   width: auto !important;
   display: block;
-  margin-top: 0.5rem;
+  margin: 0 !important;
+  padding: 0 !important;
   transition: none;
   transform: none !important;
+  object-fit: contain !important;
+  overflow: hidden !important;
 }
 
 .logo-image:hover {
@@ -75,9 +79,13 @@
 
 /* More specific rule to ensure logo image size */
 .header__logo .logo-container .logo-image {
-  height: 240px !important;
-  max-height: none !important;
+  height: 5rem !important;
+  max-height: 5rem !important;
   width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: contain !important;
+  overflow: hidden !important;
 }
 
 body {
@@ -137,29 +145,46 @@ body {
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
   transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  min-height: 7rem !important;
+  max-height: 7rem !important;
+  height: 7rem !important;
 }
 
 .header__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 7rem;
+  height: 7rem !important;
   width: 100vw !important;
   max-width: 100vw !important;
   padding: 0 !important;
   margin: 0 !important;
   box-sizing: border-box;
+  border: none !important;
+  outline: none !important;
+  min-height: 7rem !important;
+  max-height: 7rem !important;
+  overflow: hidden !important;
 }
 
 .header__logo {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 1101;
-  margin-left: -2rem;
-  margin-top: 0.5rem;
+  display: none !important;
+}
+
+.header__logo .logo-image {
+  display: none !important;
+}
+
+.header__logo .logo-text {
+  display: none !important;
+}
+
+.header__logo .logo-container {
+  display: none !important;
 }
 
 .header__navigation {
@@ -689,7 +714,7 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
 
 /* ****************DONATE PAGE**************** */
 .main_donate {
-  background: url("../img/contact/background_placeholder.png") center / cover no-repeat;
+  /* Background image removed */
 }
 
 .donate__container {
@@ -1360,6 +1385,9 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
     margin: 0 !important;
     overflow-y: auto !important;
     box-sizing: border-box !important;
+    transform: none !important;
+    border: none !important;
+    outline: none !important;
   }
   
   /* Mobile menu close button */
@@ -1404,8 +1432,13 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
     width: 100% !important;
     align-items: center !important;
     margin: 0 !important;
-    padding: 2rem !important;
+    padding: 1rem !important;
     box-sizing: border-box !important;
+    border: none !important;
+    outline: none !important;
+    transform: none !important;
+    position: relative !important;
+    top: 0 !important;
   }
   
   .header .menu__item {
@@ -1682,7 +1715,8 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
   }
   
   .logo-image {
-    height: 1.8rem !important;
+    height: 4rem !important;
+    max-height: 4rem !important;
   }
   
   .header__container {
@@ -1723,7 +1757,8 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
   }
   
   .logo-image {
-    height: 1.5rem !important;
+    height: 3.5rem !important;
+    max-height: 3.5rem !important;
   }
   
   .header__container {
@@ -1773,7 +1808,8 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
   }
   
   .logo-image {
-    height: 1.3rem !important;
+    height: 3rem !important;
+    max-height: 3rem !important;
   }
   
   .header__container {
@@ -1838,7 +1874,8 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
 
 /* Lower only the logo image in header */
 .header__logo .logo-image {
-  margin-top: 1.2rem;
+  margin: 0 !important;
+  padding: 0 !important;
   transform: none !important;
   transition: none !important;
 }
@@ -2276,4 +2313,131 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
 .header__logo a:hover,
 .footer__logo a:hover {
   cursor: pointer;
+}
+
+/* EXTREMELY AGGRESSIVE: Force remove ALL white space */
+body.menu-open {
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  position: fixed !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+body.menu-open * {
+  box-sizing: border-box !important;
+}
+
+/* Force header to be exactly at top with NO gaps */
+body.menu-open .header {
+  top: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  height: 7rem !important;
+  min-height: 7rem !important;
+  max-height: 7rem !important;
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100vw !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+}
+
+/* Force mobile menu to start EXACTLY at header bottom with NO gap */
+body.menu-open .header .menu__body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  position: fixed !important;
+  top: 7rem !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - 7rem) !important;
+  background: rgba(255,255,255,0.98) !important;
+  backdrop-filter: blur(10px) !important;
+  z-index: 9999 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+  border: none !important;
+  outline: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Force remove any gaps in the menu list */
+body.menu-open .header .menu__list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem !important;
+  width: 100% !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0.5rem !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  outline: none !important;
+  transform: none !important;
+  position: relative !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Force remove any white space from navigation */
+body.menu-open .header .header__navigation {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  transform: none !important;
+}
+
+/* Force remove white space from main content when menu is open */
+body.menu-open .main {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  transform: none !important;
+  overflow: hidden !important;
+}
+
+body.menu-open .page__main {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  transform: none !important;
+  overflow: hidden !important;
+}
+
+/* Force the mobile menu to completely fill the space */
+body.menu-open .header .menu__body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.98);
+  z-index: -1;
+}
+
+/* Force remove any potential gaps with negative margins if needed */
+body.menu-open .header .menu__body {
+  margin-top: -0.1px !important;
 }

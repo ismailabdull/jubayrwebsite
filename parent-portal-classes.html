@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Classes & Schedule - Parent Portal - Jubayr Learning Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Abel&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1.1.2" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    .header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      height: 80px;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      position: relative;
+    }
+    .header-container nav {
+      margin-right: -200px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-left: -20px;
+    }
+    .logo-image {
+      height: 50px !important;
+      width: 50px !important;
+      display: block !important;
+      margin-right: 15px !important;
+    }
+    .logo-text {
+      margin-left: 0 !important;
+      position: relative !important;
+    }
+    .logo-text h1 {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 700 !important;
+      color: #00b1e6 !important;
+      margin: 0 !important;
+      cursor: default !important;
+      pointer-events: none !important;
+      text-transform: none !important;
+      transition: none !important;
+      transform: none !important;
+      text-shadow: none !important;
+      line-height: normal !important;
+      letter-spacing: normal !important;
+    }
+    .logo-text p {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 12px !important;
+      font-weight: normal !important;
+      color: #666 !important;
+      margin: 0 !important;
+      cursor: default !important;
+      pointer-events: none !important;
+      text-transform: none !important;
+      transition: none !important;
+      transform: none !important;
+      text-shadow: none !important;
+      line-height: normal !important;
+      letter-spacing: normal !important;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    .nav-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s ease;
+      padding: 10px 0;
+    }
+    .nav-menu a:hover {
+      color: #00b1e6;
+    }
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      .nav-menu.active {
+        display: flex;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      .logo-text h1 {
+        font-size: 20px;
+      }
+    }
+    /* Fix spacing for fixed navbar */
+    .page {
+      padding-top: 0 !important;
+    }
+    
+    .page__main {
+      margin-top: 0 !important;
+    }
+    
+    .main {
+      padding-top: 0 !important;
+    }
+    
+    .main__container {
+      padding-top: 20rem !important;
+    }
+    
+    /* Make navbar smaller */
+    .header {
+      height: 5rem !important;
+      min-height: 5rem !important;
+      max-height: 5rem !important;
+    }
+    
+    .header__container {
+      height: 5rem !important;
+      min-height: 5rem !important;
+      max-height: 5rem !important;
+    }
+    
+    /* Reduce logo text size */
+    .header__logo .logo-text {
+      font-size: 1.25rem !important;
+    }
+    
+    /* Reduce navigation button sizes */
+    .menu__link, .actions-header__button {
+      font-size: 16px !important;
+      padding: 6px 0 !important;
+    }
+    
+    /* Adjust spacing for smaller navbar */
+    .menu__list {
+      gap: 18px !important;
+    }
+
+    /* Remove all header__logo styles that conflict with landing page logo styles */
+
+    /* Reduce the height/capacity of the main section under navbar */
+    .main {
+      min-height: 70vh !important;
+      max-height: 70vh !important;
+    }
+    
+    .main__container {
+      padding-top: 2rem !important;
+      min-height: 60vh !important;
+      max-height: 60vh !important;
+    }
+    
+    /* Ensure video fills the entire reduced box */
+    .main__video {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      object-fit: cover !important;
+    }
+    
+    .main__video-overlay {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+
+    /* Classes & Schedule Specific Styles */
+    .classes-section {
+      padding: 4rem 0;
+      background: #f8f9fa;
+    }
+
+    .classes-section__container {
+      max-width: 72.624rem;
+      margin: 0 auto;
+      padding: 0 0.938rem;
+    }
+
+    .classes-section__title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #1a355b;
+    }
+
+    .operation-hours {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .operation-hours__title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #1a355b;
+      text-align: center;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .hours-item {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      border-left: 4px solid #5ebaf3;
+    }
+
+    .hours-item__shift {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a355b;
+      margin-bottom: 0.5rem;
+    }
+
+    .hours-item__days {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .hours-item__time {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #5ebaf3;
+    }
+
+    .class-levels__title {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 3rem 0 2rem;
+      color: #1a355b;
+    }
+
+    .class-levels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .class-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border-top: 4px solid #5ebaf3;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .class-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .class-card__icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .class-card__level {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1a355b;
+    }
+
+    .class-card__description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .class-card__teachers {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .class-card__teachers-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a355b;
+      margin-bottom: 0.5rem;
+    }
+
+    .class-card__teachers-list {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .schedule-section {
+      background: white;
+      padding: 4rem 0;
+    }
+
+    .schedule-section__container {
+      max-width: 72.624rem;
+      margin: 0 auto;
+      padding: 0 0.938rem;
+    }
+
+    .schedule-section__title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #1a355b;
+    }
+
+    .schedule-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .schedule-shift {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .schedule-shift__title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a355b;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #5ebaf3;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .schedule-table th {
+      background: #1a355b;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .schedule-table td {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .schedule-table tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .schedule-table tr:hover {
+      background: #e3f2fd;
+    }
+
+    .time-slot {
+      font-weight: 600;
+      color: #5ebaf3;
+    }
+
+    .class-info {
+      font-size: 0.9rem;
+    }
+
+    .class-info__level {
+      font-weight: 600;
+      color: #1a355b;
+    }
+
+    .class-info__teacher {
+      color: #666;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .class-levels {
+        grid-template-columns: 1fr;
+      }
+      
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .schedule-table {
+        font-size: 0.8rem;
+      }
+      
+      .schedule-table th,
+      .schedule-table td {
+        padding: 0.5rem;
+      }
+      
+      .classes-section__title,
+      .schedule-section__title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-container">
+        <div class="logo">
+          <img src="images/android-chrome-192x192.png" alt="Jubayr Learning Center Logo" class="logo-image">
+          <div class="logo-text">
+            <h1>Jubayr Learning Center</h1>
+            <p>Empowering Students, One Lesson at a Time</p>
+          </div>
+        </div>
+        <nav>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="parent-portal-home.html">Home</a></li>
+            <li><a href="parent-portal-classes.html">Classes & Schedule</a></li>
+            <li><a href="parent-portal-policies.html">Policies</a></li>
+            <li><a href="parent-portal-media.html">Media & Highlights</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><button onclick="logout()" style="background: none; border: none; cursor: pointer; color: #ff6b6b; font-family: inherit; font-size: inherit;">Logout</button></li>
+          </ul>
+          <div class="mobile-menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="page__main main">
+        <img src="images/PHOTO-2025-05-03-20-46-27.jpg" alt="Background Image" class="main__video" style="width: 100% !important; height: 100% !important; top: 0 !important; left: 0 !important; object-fit: cover !important; position: absolute !important;" />
+        <div class="main__video-overlay"></div>
+        <div class="main__container">
+          <h1 class="main__title" style="margin-top: 8rem !important;">Classes & Schedule</h1>
+          <div class="main__text" style="margin-top: 2rem !important;">
+            Explore our comprehensive educational programs and weekly schedules designed to support your child's learning journey.
+          </div>
+        </div>
+      </section>
+
+      <section class="classes-section">
+        <div class="classes-section__container">
+          <h2 class="classes-section__title">Dugsi Operation Hours and Class Levels</h2>
+          
+          <div class="operation-hours">
+            <h3 class="operation-hours__title">Operation Hours</h3>
+            <div class="hours-grid">
+              <div class="hours-item">
+                <div class="hours-item__shift">Morning Shift</div>
+                <div class="hours-item__days">Saturday and Sunday</div>
+                <div class="hours-item__time">8:00 AM - 11:00 AM</div>
+              </div>
+              <div class="hours-item">
+                <div class="hours-item__shift">Afternoon Shift</div>
+                <div class="hours-item__days">Saturday and Sunday</div>
+                <div class="hours-item__time">1:00 PM - 4:30 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="class-levels__title">Class Levels</h3>
+          <div class="class-levels">
+            <div class="class-card">
+              <div class="class-card__icon">📚</div>
+              <h3 class="class-card__level">Beginner (Hingaad)</h3>
+              <p class="class-card__description">
+                Focus: Learning how to read Arabic (hingaad) in order to recite the Qur'an properly.
+              </p>
+              <div class="class-card__teachers">
+                <h4 class="class-card__teachers-title">Teachers:</h4>
+                <p class="class-card__teachers-list">
+                  Macalin Xamdi, Macalin Mahdi, Macalin Zahra, Macalin Naima, Macalin Nuun, Macalin Ikhlas, Macalin Faisa, Macalin Shahnas, Macalin Amira, Macalin Rahma, Macalin Hani
+                </p>
+              </div>
+            </div>
+
+            <div class="class-card">
+              <div class="class-card__icon">🕌</div>
+              <h3 class="class-card__level">Intermediate</h3>
+              <p class="class-card__description">
+                Focus: Qur'an reading and memorization.
+              </p>
+              <div class="class-card__teachers">
+                <h4 class="class-card__teachers-title">Teachers:</h4>
+                <p class="class-card__teachers-list">
+                  Macalin Ismail, Macalin Anas, Macalin Abdullahi Ali, Macalin Abdullahi Abdi, Macalin Ibrahim, Macalin Siham, Macalin Maymuuna
+                </p>
+              </div>
+            </div>
+
+            <div class="class-card">
+              <div class="class-card__icon">🌟</div>
+              <h3 class="class-card__level">Machad (Advanced)</h3>
+              <p class="class-card__description">
+                Focus: Older students learning Islamic studies alongside Qur'an.
+              </p>
+              <div class="class-card__teachers">
+                <h4 class="class-card__teachers-title">Teachers:</h4>
+                <p class="class-card__teachers-list">
+                  Macalin Hamza and Macalin Abdirahman Dhaqane
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="schedule-section">
+        <div class="schedule-section__container">
+          <h2 class="schedule-section__title">Weekly Class Schedule</h2>
+          
+          <div class="schedule-container">
+            <div class="schedule-shift">
+              <h3 class="schedule-shift__title">Morning Shift (8:00 AM - 11:00 AM)</h3>
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="time-slot">8:00 - 9:00 AM</td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Beginner (Hingaad)</div>
+                        <div class="class-info__teacher">Macalin Xamdi, Macalin Mahdi</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Intermediate</div>
+                        <div class="class-info__teacher">Macalin Ismail, Macalin Anas</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="time-slot">9:00 - 10:00 AM</td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Intermediate</div>
+                        <div class="class-info__teacher">Macalin Abdullahi Ali, Macalin Ibrahim</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Beginner (Hingaad)</div>
+                        <div class="class-info__teacher">Macalin Zahra, Macalin Naima</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="time-slot">10:00 - 11:00 AM</td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Machad (Advanced)</div>
+                        <div class="class-info__teacher">Macalin Hamza</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Machad (Advanced)</div>
+                        <div class="class-info__teacher">Macalin Abdirahman Dhaqane</div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="schedule-shift">
+              <h3 class="schedule-shift__title">Afternoon Shift (1:00 PM - 4:30 PM)</h3>
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="time-slot">1:00 - 2:00 PM</td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Beginner (Hingaad)</div>
+                        <div class="class-info__teacher">Macalin Nuun, Macalin Ikhlas</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Intermediate</div>
+                        <div class="class-info__teacher">Macalin Abdullahi Abdi, Macalin Siham</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="time-slot">2:00 - 3:00 PM</td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Intermediate</div>
+                        <div class="class-info__teacher">Macalin Maymuuna</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Beginner (Hingaad)</div>
+                        <div class="class-info__teacher">Macalin Faisa, Macalin Shahnas</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="time-slot">3:00 - 4:00 PM</td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Machad (Advanced)</div>
+                        <div class="class-info__teacher">Macalin Hamza</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="class-info">
+                        <div class="class-info__level">Machad (Advanced)</div>
+                        <div class="class-info__teacher">Macalin Abdirahman Dhaqane</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="time-slot">4:00 - 4:30 PM</td>
+                    <td colspan="2">
+                      <div class="class-info">
+                        <div class="class-info__level">Review & Homework Help</div>
+                        <div class="class-info__teacher">All Teachers Available</div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__container">
+        <a href="parent-portal-home.html" class="footer__logo logo">
+          <div class="logo-container">
+            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
+            <span class="logo-text">Jubayr Learning Center</span>
+          </div>
+        </a>
+        <div class="footer__copyright">&copy; 2025 Jubayr Learning Center – All Rights Reserved</div>
+      </div>
+    </footer>
+  </div>
+  
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    function toggleMenu() {
+      const navMenu = document.getElementById('navMenu');
+      navMenu.classList.toggle('active');
+    }
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navMenu').classList.remove('active');
+      });
+    });
+  </script>
+</body>
+
+</html> 

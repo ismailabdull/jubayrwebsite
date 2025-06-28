@@ -4,9 +4,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <title>Jubayr Learning Center - About</title>
   <link rel="stylesheet" href="css/style.css?v=1.1.2" />
+  <style>
+    /* Make navbar smaller */
+    .header {
+      height: 5rem !important;
+      min-height: 5rem !important;
+      max-height: 5rem !important;
+    }
+    
+    .header__container {
+      height: 5rem !important;
+      min-height: 5rem !important;
+      max-height: 5rem !important;
+    }
+    
+    /* Reduce logo text size */
+    .header__logo .logo-text {
+      font-size: 1.25rem !important;
+    }
+    
+    /* Reduce navigation button sizes */
+    .menu__link, .actions-header__button {
+      font-size: 16px !important;
+      padding: 6px 0 !important;
+    }
+    
+    /* Adjust spacing for smaller navbar */
+    .menu__list {
+      gap: 18px !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,7 +51,6 @@
       <div class="header__container">
         <a href="parent-portal.html" class="header__logo logo">
           <div class="logo-container">
-            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
             <span class="logo-text">Jubayr Learning Center</span>
           </div>
         </a>
@@ -83,7 +118,6 @@
       <div class="footer__container">
         <a href="parent-portal.html" class="footer__logo logo">
           <div class="logo-container">
-            <img src="images/Untitled design.png" alt="Jubayr Learning Center Design" class="logo-image" />
             <span class="logo-text">Jubayr Learning Center</span>
           </div>
         </a>
