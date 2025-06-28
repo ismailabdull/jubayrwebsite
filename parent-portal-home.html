@@ -152,11 +152,12 @@
       flex-direction: column;
       cursor: pointer;
       padding: 10px;
-      z-index: 1001;
       background: none;
       border: none;
-      outline: none;
-      position: relative;
+      position: absolute;
+      top: 15px;
+      right: 0;
+      z-index: 1001;
     }
     
     .mobile-menu-toggle span {
@@ -166,10 +167,8 @@
       margin: 3px 0;
       transition: 0.3s;
       border-radius: 2px;
-      display: block;
     }
     
-    /* Hamburger menu animation */
     .mobile-menu-toggle.active span:nth-child(1) {
       transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -486,7 +485,7 @@
     }
 
     /* Simple Hamburger Menu */
-    .hamburger-menu {
+    .mobile-menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
@@ -499,7 +498,7 @@
       z-index: 1001;
     }
     
-    .hamburger-menu span {
+    .mobile-menu-toggle span {
       width: 25px;
       height: 3px;
       background: #333;
@@ -508,15 +507,15 @@
       border-radius: 2px;
     }
     
-    .hamburger-menu.active span:nth-child(1) {
+    .mobile-menu-toggle.active span:nth-child(1) {
       transform: rotate(-45deg) translate(-5px, 6px);
     }
     
-    .hamburger-menu.active span:nth-child(2) {
+    .mobile-menu-toggle.active span:nth-child(2) {
       opacity: 0;
     }
     
-    .hamburger-menu.active span:nth-child(3) {
+    .mobile-menu-toggle.active span:nth-child(3) {
       transform: rotate(45deg) translate(-5px, -6px);
     }
     
@@ -567,7 +566,7 @@
     }
     
     @media (max-width: 768px) {
-      .hamburger-menu {
+      .mobile-menu-toggle {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -613,22 +612,10 @@
         </nav>
         
         <!-- Simple Hamburger Menu -->
-        <button class="hamburger-menu" onclick="toggleSimpleMenu()" aria-label="Toggle mobile menu">
+        <div class="mobile-menu-toggle" onclick="toggleMenu()">
           <span></span>
           <span></span>
           <span></span>
-        </button>
-        
-        <!-- Mobile Navigation Dropdown -->
-        <div class="mobile-nav" id="mobileNav">
-          <div class="mobile-nav-content">
-            <a href="parent-portal-home.html">Home</a>
-            <a href="parent-portal-classes.html">Classes & Schedule</a>
-            <a href="parent-portal-policies.html">Policies</a>
-            <a href="parent-portal-media.html">Media & Highlights</a>
-            <a href="donate.html">Donate</a>
-            <button onclick="logout()">Logout</button>
-          </div>
         </div>
       </div>
     </header>
@@ -744,63 +731,9 @@
   <script src="js/auth.js"></script>
   <script src="js/script.js"></script>
   <script>
-    // Simple hamburger menu functionality
-    function toggleSimpleMenu() {
-      console.log('toggleSimpleMenu function called');
-      const mobileNav = document.getElementById('mobileNav');
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      
-      console.log('mobileNav:', mobileNav);
-      console.log('hamburgerMenu:', hamburgerMenu);
-      
-      if (mobileNav.classList.contains('active')) {
-        console.log('Closing mobile menu');
-        mobileNav.classList.remove('active');
-        hamburgerMenu.classList.remove('active');
-      } else {
-        console.log('Opening mobile menu');
-        mobileNav.classList.add('active');
-        hamburgerMenu.classList.add('active');
-      }
-    }
-
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.mobile-nav-content a, .mobile-nav-content button').forEach(link => {
-      link.addEventListener('click', () => {
-        console.log('Mobile menu link clicked, closing menu');
-        const mobileNav = document.getElementById('mobileNav');
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        mobileNav.classList.remove('active');
-        hamburgerMenu.classList.remove('active');
-      });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const mobileNav = document.getElementById('mobileNav');
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      
-      if (mobileNav.classList.contains('active') && 
-          !mobileNav.contains(event.target) && 
-          !hamburgerMenu.contains(event.target)) {
-        mobileNav.classList.remove('active');
-        hamburgerMenu.classList.remove('active');
-      }
-    });
-
-    // Close mobile menu on escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        const mobileNav = document.getElementById('mobileNav');
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        mobileNav.classList.remove('active');
-        hamburgerMenu.classList.remove('active');
-      }
-    });
-
-    // Enhanced hamburger menu functionality (original)
+    // Enhanced hamburger menu functionality
     function toggleMenu() {
-      console.log('toggleMenu function called');
+      console.log('toggleMenu function called on home page');
       const navMenu = document.getElementById('navMenu');
       const mobileToggle = document.querySelector('.mobile-menu-toggle');
       
@@ -855,22 +788,15 @@
       if (window.innerWidth > 768) {
         const navMenu = document.getElementById('navMenu');
         const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const mobileNav = document.getElementById('mobileNav');
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        
         navMenu.classList.remove('active');
         mobileToggle.classList.remove('active');
-        mobileNav.classList.remove('active');
-        hamburgerMenu.classList.remove('active');
       }
     });
 
     // Debug: Log when page loads
-    console.log('Page loaded, checking for hamburger menu elements');
+    console.log('Home page loaded, checking for hamburger menu elements');
     console.log('navMenu element:', document.getElementById('navMenu'));
     console.log('mobile-menu-toggle element:', document.querySelector('.mobile-menu-toggle'));
-    console.log('mobileNav element:', document.getElementById('mobileNav'));
-    console.log('hamburger-menu element:', document.querySelector('.hamburger-menu'));
     console.log('Window width:', window.innerWidth);
 
     // Logout function
