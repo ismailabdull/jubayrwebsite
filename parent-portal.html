@@ -68,6 +68,11 @@
         display: flex;
         list-style: none;
         gap: 30px;
+        margin: 0;
+        padding: 0;
+    }
+    .nav-menu li {
+        list-style: none;
     }
     .nav-menu a {
         text-decoration: none;
@@ -76,14 +81,29 @@
         font-size: 16px;
         transition: color 0.3s ease;
         padding: 10px 0;
+        display: block;
     }
     .nav-menu a:hover {
         color: #00b1e6;
+    }
+    .nav-menu button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ff6b6b;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 10px 0;
+      margin-top: -2px;
+      vertical-align: baseline;
+      line-height: inherit;
     }
     .mobile-menu-toggle {
         display: none;
         flex-direction: column;
         cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
     }
     .mobile-menu-toggle span {
         width: 25px;
@@ -91,11 +111,23 @@
         background: #333;
         margin: 3px 0;
         transition: 0.3s;
+        border-radius: 2px;
+    }
+    
+    /* Hamburger menu animation */
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
     @media (max-width: 768px) {
         .nav-menu {
             display: none;
-            position: absolute;
+            position: fixed;
             top: 80px;
             left: 0;
             right: 0;
@@ -103,9 +135,20 @@
             flex-direction: column;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
         }
         .nav-menu.active {
             display: flex;
+        }
+        .nav-menu li {
+            margin: 10px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .nav-menu li:last-child {
+            border-bottom: none;
         }
         .mobile-menu-toggle {
             display: flex;
@@ -114,6 +157,11 @@
             font-size: 20px;
         }
     }
+    /* Navigation styles */
+    nav {
+      position: relative;
+      margin-right: -200px;
+    }
   </style>
 </head>
 
@@ -121,6 +169,15 @@
   <div class="wrapper">
     <header class="header">
       <div class="header-container">
+        <div class="logo">
+          <a href="parent-portal-home.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+            <img src="images/android-chrome-192x192.png" alt="Jubayr Learning Center Logo" class="logo-image">
+            <div class="logo-text">
+              <h1>Jubayr Learning Center</h1>
+              <p>Empowering Students, One Lesson at a Time</p>
+            </div>
+          </a>
+        </div>
         <nav>
           <ul class="nav-menu" id="navMenu">
             <li><a href="parent-portal-home.html">Home</a></li>
@@ -128,14 +185,28 @@
             <li><a href="parent-portal-policies.html">Policies</a></li>
             <li><a href="parent-portal-media.html">Media & Highlights</a></li>
             <li><a href="donate.html">Donate</a></li>
-            <li><button onclick="logout()" style="background: none; border: none; cursor: pointer; color: #ff6b6b; font-family: inherit; font-size: inherit;">Logout</button></li>
+            <li><button onclick="logout()">Logout</button></li>
           </ul>
-          <div class="mobile-menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        </nav>
+        
+        <!-- Simple Hamburger Menu -->
+        <button class="hamburger-menu" onclick="toggleSimpleMenu()" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <div class="mobile-nav" id="mobileNav">
+          <div class="mobile-nav-content">
+            <a href="parent-portal-home.html">Home</a>
+            <a href="parent-portal-classes.html">Classes & Schedule</a>
+            <a href="parent-portal-policies.html">Policies</a>
+            <a href="parent-portal-media.html">Media & Highlights</a>
+            <a href="donate.html">Donate</a>
+            <button onclick="logout()">Logout</button>
           </div>
-            </nav>
+        </div>
       </div>
     </header>
     <main class="page">
@@ -311,17 +382,59 @@
   <script src="js/script.js"></script>
   
   <script>
-    // Mobile menu toggle function
+    // Enhanced hamburger menu functionality
     function toggleMenu() {
         const navMenu = document.getElementById('navMenu');
-        navMenu.classList.toggle('active');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+        } else {
+            navMenu.classList.add('active');
+            mobileToggle.classList.add('active');
+        }
     }
 
     // Close mobile menu when clicking on a link
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
-            document.getElementById('navMenu').classList.remove('active');
+            const navMenu = document.getElementById('navMenu');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
         });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (!navMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+        }
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const navMenu = document.getElementById('navMenu');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            const navMenu = document.getElementById('navMenu');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+        }
     });
 
     // Add scroll effect to header

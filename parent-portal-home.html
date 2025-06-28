@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Abel&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1.1.2" />
   <style>
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
@@ -27,6 +28,7 @@
       font-family: 'Montserrat', sans-serif !important;
     }
     
+    /* Header styles */
     .header {
       background: #fff;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -36,6 +38,7 @@
       z-index: 1000;
       height: 80px;
     }
+    
     .header-container {
       max-width: 1200px;
       margin: 0 auto;
@@ -46,24 +49,26 @@
       height: 80px;
       position: relative;
     }
-    .header-container nav {
-      margin-right: -200px;
-    }
+    
+    /* Logo styles */
     .logo {
       display: flex;
       align-items: center;
       margin-left: -20px;
     }
+    
     .logo-image {
       height: 50px !important;
       width: 50px !important;
       display: block !important;
       margin-right: 15px !important;
     }
+    
     .logo-text {
       margin-left: 0 !important;
       position: relative !important;
     }
+    
     .logo-text h1 {
       font-family: 'Montserrat', sans-serif !important;
       font-size: 24px !important;
@@ -79,6 +84,7 @@
       line-height: normal !important;
       letter-spacing: normal !important;
     }
+    
     .logo-text p {
       font-family: 'Montserrat', sans-serif !important;
       font-size: 12px !important;
@@ -94,11 +100,25 @@
       line-height: normal !important;
       letter-spacing: normal !important;
     }
+    
+    /* Navigation styles */
+    nav {
+      position: relative;
+      margin-right: -200px;
+    }
+    
     .nav-menu {
       display: flex;
       list-style: none;
       gap: 30px;
+      margin: 0;
+      padding: 0;
     }
+    
+    .nav-menu li {
+      list-style: none;
+    }
+    
     .nav-menu a {
       text-decoration: none;
       color: #333;
@@ -106,26 +126,67 @@
       font-size: 16px;
       transition: color 0.3s ease;
       padding: 10px 0;
+      display: block;
     }
+    
     .nav-menu a:hover {
       color: #00b1e6;
     }
+    
+    .nav-menu button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ff6b6b;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 10px 0;
+      margin-top: -2px;
+      vertical-align: baseline;
+      line-height: inherit;
+    }
+    
+    /* Mobile menu toggle */
     .mobile-menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+      background: none;
+      border: none;
+      outline: none;
+      position: relative;
     }
+    
     .mobile-menu-toggle span {
       width: 25px;
       height: 3px;
       background: #333;
       margin: 3px 0;
       transition: 0.3s;
+      border-radius: 2px;
+      display: block;
     }
+    
+    /* Hamburger menu animation */
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    /* Mobile styles */
     @media (max-width: 768px) {
       .nav-menu {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 80px;
         left: 0;
         right: 0;
@@ -133,17 +194,46 @@
         flex-direction: column;
         padding: 20px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        gap: 0;
       }
+      
       .nav-menu.active {
-        display: flex;
+        display: flex !important;
       }
+      
+      .nav-menu li {
+        margin: 10px 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        width: 100%;
+      }
+      
+      .nav-menu li:last-child {
+        border-bottom: none;
+      }
+      
+      .nav-menu a,
+      .nav-menu button {
+        width: 100%;
+        text-align: left;
+        padding: 15px 0;
+        font-size: 18px;
+      }
+      
       .mobile-menu-toggle {
-        display: flex;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
       }
+      
       .logo-text h1 {
         font-size: 20px;
       }
     }
+    
     /* Fix spacing for fixed navbar */
     .page {
       padding-top: 0 !important;
@@ -394,6 +484,107 @@
         font-size: 2rem;
       }
     }
+
+    /* Simple Hamburger Menu */
+    .hamburger-menu {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 10px;
+      background: none;
+      border: none;
+      position: absolute;
+      top: 15px;
+      right: 0;
+      z-index: 1001;
+    }
+    
+    .hamburger-menu span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+    
+    .hamburger-menu.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .hamburger-menu.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger-menu.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-top: 1px solid #eee;
+    }
+    
+    .mobile-nav.active {
+      display: block;
+    }
+    
+    .mobile-nav-content {
+      padding: 20px;
+    }
+    
+    .mobile-nav-content a,
+    .mobile-nav-content button {
+      display: block;
+      width: 100%;
+      padding: 15px 0;
+      text-decoration: none;
+      color: #333;
+      border: none;
+      background: none;
+      text-align: left;
+      font-size: 16px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    
+    .mobile-nav-content a:last-child,
+    .mobile-nav-content button:last-child {
+      border-bottom: none;
+    }
+    
+    .mobile-nav-content a:hover,
+    .mobile-nav-content button:hover {
+      color: #00b1e6;
+    }
+    
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
+      .nav-menu {
+        display: none;
+      }
+      
+      nav {
+        position: relative;
+      }
+      
+      .header-container {
+        position: relative;
+      }
+    }
   </style>
 </head>
 
@@ -402,11 +593,13 @@
     <header class="header">
       <div class="header-container">
         <div class="logo">
-          <img src="images/android-chrome-192x192.png" alt="Jubayr Learning Center Logo" class="logo-image">
-          <div class="logo-text">
-            <h1>Jubayr Learning Center</h1>
-            <p>Empowering Students, One Lesson at a Time</p>
-          </div>
+          <a href="parent-portal-home.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+            <img src="images/android-chrome-192x192.png" alt="Jubayr Learning Center Logo" class="logo-image">
+            <div class="logo-text">
+              <h1>Jubayr Learning Center</h1>
+              <p>Empowering Students, One Lesson at a Time</p>
+            </div>
+          </a>
         </div>
         <nav>
           <ul class="nav-menu" id="navMenu">
@@ -415,14 +608,28 @@
             <li><a href="parent-portal-policies.html">Policies</a></li>
             <li><a href="parent-portal-media.html">Media & Highlights</a></li>
             <li><a href="donate.html">Donate</a></li>
-            <li><button onclick="logout()" style="background: none; border: none; cursor: pointer; color: #ff6b6b; font-family: inherit; font-size: inherit;">Logout</button></li>
+            <li><button onclick="logout()">Logout</button></li>
           </ul>
-          <div class="mobile-menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
         </nav>
+        
+        <!-- Simple Hamburger Menu -->
+        <button class="hamburger-menu" onclick="toggleSimpleMenu()" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <div class="mobile-nav" id="mobileNav">
+          <div class="mobile-nav-content">
+            <a href="parent-portal-home.html">Home</a>
+            <a href="parent-portal-classes.html">Classes & Schedule</a>
+            <a href="parent-portal-policies.html">Policies</a>
+            <a href="parent-portal-media.html">Media & Highlights</a>
+            <a href="donate.html">Donate</a>
+            <button onclick="logout()">Logout</button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -537,17 +744,141 @@
   <script src="js/auth.js"></script>
   <script src="js/script.js"></script>
   <script>
+    // Simple hamburger menu functionality
+    function toggleSimpleMenu() {
+      console.log('toggleSimpleMenu function called');
+      const mobileNav = document.getElementById('mobileNav');
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      
+      console.log('mobileNav:', mobileNav);
+      console.log('hamburgerMenu:', hamburgerMenu);
+      
+      if (mobileNav.classList.contains('active')) {
+        console.log('Closing mobile menu');
+        mobileNav.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+      } else {
+        console.log('Opening mobile menu');
+        mobileNav.classList.add('active');
+        hamburgerMenu.classList.add('active');
+      }
+    }
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav-content a, .mobile-nav-content button').forEach(link => {
+      link.addEventListener('click', () => {
+        console.log('Mobile menu link clicked, closing menu');
+        const mobileNav = document.getElementById('mobileNav');
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        mobileNav.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const mobileNav = document.getElementById('mobileNav');
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      
+      if (mobileNav.classList.contains('active') && 
+          !mobileNav.contains(event.target) && 
+          !hamburgerMenu.contains(event.target)) {
+        mobileNav.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+      }
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const mobileNav = document.getElementById('mobileNav');
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        mobileNav.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+      }
+    });
+
+    // Enhanced hamburger menu functionality (original)
     function toggleMenu() {
+      console.log('toggleMenu function called');
       const navMenu = document.getElementById('navMenu');
-      navMenu.classList.toggle('active');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      
+      console.log('navMenu:', navMenu);
+      console.log('mobileToggle:', mobileToggle);
+      
+      if (navMenu.classList.contains('active')) {
+        console.log('Removing active class');
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      } else {
+        console.log('Adding active class');
+        navMenu.classList.add('active');
+        mobileToggle.classList.add('active');
+      }
     }
 
     // Close mobile menu when clicking on a link
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
-        document.getElementById('navMenu').classList.remove('active');
+        console.log('Link clicked, closing menu');
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
       });
     });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navMenu = document.getElementById('navMenu');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      
+      if (!navMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      }
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        mobileNav.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+      }
+    });
+
+    // Debug: Log when page loads
+    console.log('Page loaded, checking for hamburger menu elements');
+    console.log('navMenu element:', document.getElementById('navMenu'));
+    console.log('mobile-menu-toggle element:', document.querySelector('.mobile-menu-toggle'));
+    console.log('mobileNav element:', document.getElementById('mobileNav'));
+    console.log('hamburger-menu element:', document.querySelector('.hamburger-menu'));
+    console.log('Window width:', window.innerWidth);
+
+    // Logout function
+    function logout() {
+      console.log('Logout function called');
+      localStorage.removeItem('parentLoggedIn');
+      window.location.href = 'index.html';
+    }
   </script>
 </body>
 
