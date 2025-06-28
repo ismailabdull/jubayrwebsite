@@ -12,9 +12,256 @@
   <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
   <link rel="manifest" href="site.webmanifest" />
   <title>Thank You - Jubayr Learning Center</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Abel&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1.1.2" />
   <style>
-    /* Make navbar smaller */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    .header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      height: 80px;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      position: relative;
+    }
+
+    .header-container nav {
+      position: relative;
+      margin-right: -200px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-left: -20px;
+    }
+
+    .logo-image {
+      height: 50px !important;
+      width: 50px !important;
+      display: block !important;
+      margin-right: 15px !important;
+    }
+
+    .logo-text {
+      margin-left: 0 !important;
+      position: relative !important;
+    }
+
+    .logo-text h1 {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 24px !important;
+      font-weight: 700 !important;
+      color: #00b1e6 !important;
+      margin: 0 !important;
+      cursor: default !important;
+      pointer-events: none !important;
+      text-transform: none !important;
+      transition: none !important;
+      transform: none !important;
+      text-shadow: none !important;
+      line-height: normal !important;
+      letter-spacing: normal !important;
+    }
+
+    .logo-text p {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 12px !important;
+      font-weight: normal !important;
+      color: #666 !important;
+      margin: 0 !important;
+      cursor: default !important;
+      pointer-events: none !important;
+      text-transform: none !important;
+      transition: none !important;
+      transform: none !important;
+      text-shadow: none !important;
+      line-height: normal !important;
+      letter-spacing: normal !important;
+    }
+
+    /* Navigation styles */
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-menu li {
+      list-style: none;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s ease;
+      padding: 10px 0;
+      display: block;
+    }
+
+    .nav-menu a:hover {
+      color: #00b1e6;
+    }
+    
+    .nav-menu button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ff6b6b;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 10px 0;
+      margin-top: -2px;
+      vertical-align: baseline;
+      line-height: inherit;
+    }
+
+    /* Mobile menu toggle */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+      background: none;
+      border: none;
+      outline: none;
+      position: relative;
+    }
+
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+      display: block;
+    }
+    
+    /* Hamburger menu animation */
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Override any conflicting styles from main CSS */
+    .logo-text {
+      text-transform: none !important;
+    }
+
+    .logo-text * {
+      text-transform: none !important;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        gap: 0;
+      }
+
+      .nav-menu.active {
+        display: flex !important;
+      }
+      
+      .nav-menu li {
+        margin: 10px 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        width: 100%;
+      }
+      
+      .nav-menu li:last-child {
+        border-bottom: none;
+      }
+      
+      .nav-menu a,
+      .nav-menu button {
+        width: 100%;
+        text-align: left;
+        padding: 15px 0;
+        font-size: 18px;
+      }
+
+      .mobile-menu-toggle {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
+
+      .logo-text h1 {
+        font-size: 20px;
+      }
+    }
+
+    /* Fix spacing for fixed navbar */
+    .page {
+      padding-top: 0 !important;
+    }
+    
+    .page__main {
+      margin-top: 0 !important;
+    }
+    
+    .main {
+      padding-top: 0 !important;
+    }
+    
+    .main__container {
+      padding-top: 5rem !important;
+    }
+    
+    /* Remove conflicting header styles */
     .header {
       height: 5rem !important;
       min-height: 5rem !important;
@@ -28,9 +275,7 @@
     }
     
     /* Reduce logo text size */
-    .header__logo .logo-text {
-      font-size: 1.25rem !important;
-    }
+    /* Remove conflicting header__logo styles */
     
     /* Reduce navigation button sizes */
     .menu__link, .actions-header__button {
@@ -42,7 +287,38 @@
     .menu__list {
       gap: 18px !important;
     }
+
+    /* Remove all header__logo styles that conflict with landing page logo styles */
+
+    /* Reduce the height/capacity of the main section under navbar */
+    .main {
+      min-height: 70vh !important;
+      max-height: 70vh !important;
+    }
     
+    .main__container {
+      padding-top: 2rem !important;
+      min-height: 60vh !important;
+      max-height: 60vh !important;
+    }
+    
+    /* Ensure video fills the entire reduced box */
+    .main__video {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      object-fit: cover !important;
+    }
+    
+    .main__video-overlay {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+
+    /* Thank You Page Specific Styles */
     .thank-you-container {
       text-align: center;
       padding: 4rem 2rem;
@@ -238,79 +514,76 @@
 <body>
   <div class="wrapper">
     <header class="header">
-      <div class="header__container">
-        <a href="parent-portal.html" class="header__logo logo">
-          <div class="logo-container">
-            <span class="logo-text">Jubayr Learning Center</span>
-          </div>
-        </a>
-        <div class="header__navigation">
-          <div class="header__menu menu">
-            <nav class="menu__body">
-              <button type="button" class="menu__close" aria-label="Close menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <ul class="menu__list">
-                <li class="menu__item"><a href="parent-portal.html" class="menu__link">Home</a></li>
-                <li class="menu__item"><a href="about.html" class="menu__link">About</a></li>
-                <li class="menu__item"><a href="services.html" class="menu__link">Services</a></li>
-                <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
-                <li class="menu__item"><a href="donate.html" class="actions-header__button">Donate</a></li>
-                <li class="menu__item"><button onclick="logout()" class="menu__link" style="background: none; border: none; cursor: pointer; color: #ff6b6b;">Logout</button></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="header__actions actions-header">
-            <button type="button" class="menu__icon"><span></span></button>
-          </div>
+      <div class="header-container">
+        <div class="logo">
+          <a href="parent-portal-home.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+            <img src="images/android-chrome-192x192.png" alt="Jubayr Learning Center Logo" class="logo-image">
+            <div class="logo-text">
+              <h1>Jubayr Learning Center</h1>
+              <p>Empowering Students, One Lesson at a Time</p>
+            </div>
+          </a>
+        </div>
+        <nav>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="parent-portal-home.html">Home</a></li>
+            <li><a href="parent-portal-classes.html">Classes & Schedule</a></li>
+            <li><a href="parent-portal-policies.html">Policies</a></li>
+            <li><a href="parent-portal-media.html">Media & Highlights</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><button onclick="logout()">Logout</button></li>
+          </ul>
+        </nav>
+        <div class="mobile-menu-toggle" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
     </header>
-    
     <main class="page">
-      <section class="page__main main main_pages">
-        <div class="main__container main__container_pages">
-          <div class="thank-you-container">
-            <div class="thank-you-icon">✓</div>
-            
-            <h1 class="thank-you-title">Thank You!</h1>
-            <p class="thank-you-subtitle">Your donation has been processed successfully</p>
-            
-            <div class="donation-details">
-              <div class="donation-amount" id="donation-amount">$25.00</div>
-              <div class="donation-type" id="donation-type">One-time donation</div>
-            </div>
-            
-            <div class="thank-you-message">
-              <p>Your generous contribution will make a real difference in our students' educational journey. 
-              Your support helps us provide quality education and build strong learners in our community.</p>
-            </div>
-            
-            <div class="impact-section">
-              <h3 class="impact-title">Your Impact</h3>
-              <ul class="impact-list">
-                <li>Supporting our daily learning programs</li>
-                <li>Providing educational resources and materials</li>
-                <li>Helping students develop critical thinking skills</li>
-                <li>Building confidence and academic success</li>
-                <li>Creating a nurturing learning environment</li>
-              </ul>
-            </div>
-            
-            <div class="action-buttons">
-              <a href="parent-portal.html" class="action-button primary-button">Return to Home</a>
-              <a href="donate.html" class="action-button secondary-button">Make Another Donation</a>
+      <section class="page__donate donate">
+        <div class="donate__container">
+          <div class="donate__content">
+            <div class="thank-you-container">
+              <div class="thank-you-icon">✓</div>
+              
+              <h1 class="thank-you-title">Thank You!</h1>
+              <p class="thank-you-subtitle">Your donation has been processed successfully</p>
+              
+              <div class="donation-details">
+                <div class="donation-amount" id="donation-amount">$25.00</div>
+                <div class="donation-type" id="donation-type">One-time donation</div>
+              </div>
+              
+              <div class="thank-you-message">
+                <p>Your generous contribution will make a real difference in our students' educational journey. 
+                Your support helps us provide quality education and build strong learners in our community.</p>
+              </div>
+              
+              <div class="impact-section">
+                <h3 class="impact-title">Your Impact</h3>
+                <ul class="impact-list">
+                  <li>Supporting our daily learning programs</li>
+                  <li>Providing educational resources and materials</li>
+                  <li>Helping students develop critical thinking skills</li>
+                  <li>Building confidence and academic success</li>
+                  <li>Creating a nurturing learning environment</li>
+                </ul>
+              </div>
+              
+              <div class="action-buttons">
+                <a href="parent-portal-home.html" class="action-button primary-button">Return to Home</a>
+                <a href="donate.html" class="action-button secondary-button">Make Another Donation</a>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-    
     <footer class="footer">
       <div class="footer__container">
-        <a href="parent-portal.html" class="footer__logo logo">
+        <a href="parent-portal-home.html" class="footer__logo logo">
           <div class="logo-container">
             <span class="logo-text">Jubayr Learning Center</span>
           </div>
@@ -320,9 +593,72 @@
     </footer>
   </div>
   
+  <!-- Scripts -->
   <script src="js/auth.js"></script>
   <script src="js/script.js"></script>
   <script>
+    // Enhanced hamburger menu functionality
+    function toggleMenu() {
+      console.log('toggleMenu function called');
+      const navMenu = document.getElementById('navMenu');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      
+      console.log('navMenu:', navMenu);
+      console.log('mobileToggle:', mobileToggle);
+      
+      if (navMenu.classList.contains('active')) {
+        console.log('Removing active class');
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      } else {
+        console.log('Adding active class');
+        navMenu.classList.add('active');
+        mobileToggle.classList.add('active');
+      }
+    }
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        console.log('Link clicked, closing menu');
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const navMenu = document.getElementById('navMenu');
+      const mobileToggle = document.querySelector('.mobile-menu-toggle');
+      
+      if (!navMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      }
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+      }
+    });
+
     // Parse URL parameters to display donation details
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -346,6 +682,12 @@
       // Clear URL parameters to prevent showing donation details on page refresh
       window.history.replaceState({}, document.title, window.location.pathname);
     });
+
+    // Debug: Log when page loads
+    console.log('Thank you page loaded, checking for hamburger menu elements');
+    console.log('navMenu element:', document.getElementById('navMenu'));
+    console.log('mobile-menu-toggle element:', document.querySelector('.mobile-menu-toggle'));
+    console.log('Window width:', window.innerWidth);
   </script>
 </body>
 

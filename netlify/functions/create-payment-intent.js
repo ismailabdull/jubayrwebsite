@@ -8,6 +8,13 @@ exports.handler = async (event) => {
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
 
+  // Debug: Check if environment variable is loaded
+  console.log('🔑 Environment check:', {
+    hasStripeKey: !!process.env.STRIPE_SECRET_KEY,
+    keyLength: process.env.STRIPE_SECRET_KEY ? process.env.STRIPE_SECRET_KEY.length : 0,
+    keyPrefix: process.env.STRIPE_SECRET_KEY ? process.env.STRIPE_SECRET_KEY.substring(0, 10) + '...' : 'NOT_FOUND'
+  });
+
   // Handle preflight requests
   if (event.httpMethod === 'OPTIONS') {
     return {

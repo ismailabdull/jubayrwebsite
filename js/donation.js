@@ -8,11 +8,12 @@ const stripe = Stripe('pk_test_51RbjWrQmFrd2NqBdcQu6BasrklUCRLiavvmdgnYZr8Vz3GZx
 console.log('✅ Stripe initialized with key:', stripe ? 'SUCCESS' : 'FAILED');
 
 // Server configuration
-const SERVER_URL = window.location.hostname === 'localhost' ? 'http://localhost:4242' : '/api';
+const SERVER_URL = window.location.hostname === 'localhost' ? 'http://localhost:8888' : '/api';
 
 // Global variables
 let elements;
 let paymentElement;
+let clientSecret;
 let amount = 25;
 let donationType = 'one-time';
 let email = '';
@@ -301,6 +302,14 @@ async function initializeStripeElements() {
         } else {
             // Create payment intent for one-time payments
             console.log('💳 Creating payment intent for one-time payment...');
+            console.log('🌐 Server URL:', SERVER_URL);
+            console.log('🔗 Full URL:', `${SERVER_URL}/create-payment-intent`);
+            console.log('📦 Request payload:', { 
+                amount: currentAmount,
+                donationType: donationType,
+                email: email
+            });
+            
             isSubscription = false;
             const response = await fetch(`${SERVER_URL}/create-payment-intent`, {
                 method: "POST",
@@ -324,7 +333,17 @@ async function initializeStripeElements() {
             clientSecret = paymentData.clientSecret;
             console.log('✅ Payment intent created successfully for amount:', currentAmount);
             console.log('🔑 Client secret for payment intent:', clientSecret ? 'RECEIVED' : 'MISSING');
+            console.log('�� Client secret type:', typeof clientSecret);
+            console.log('🔑 Client secret length:', clientSecret ? clientSecret.length : 0);
+            console.log('🔑 Client secret preview:', clientSecret ? clientSecret.substring(0, 20) + '...' : 'N/A');
         }
+        
+        // Validate clientSecret before using it
+        if (!clientSecret || typeof clientSecret !== 'string') {
+            throw new Error(`Invalid client secret: ${clientSecret} (type: ${typeof clientSecret})`);
+        }
+        
+        console.log('🔑 About to create Stripe Elements with client secret:', clientSecret.substring(0, 20) + '...');
         
         // Initialize Stripe Elements and store globally
         elements = stripe.elements({
