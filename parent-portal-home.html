@@ -471,21 +471,7 @@
       opacity: 0.9;
     }
 
-    /* Typing Animation Styles */
-    .typing-cursor {
-      color: #5ebaf3;
-      animation: blink 1s infinite;
-    }
 
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    #typed-text {
-      min-height: 1.2em;
-      display: inline-block;
-    }
 
     @media (max-width: 768px) {
       .announcements__grid,
@@ -645,9 +631,8 @@
         <div class="main__video-overlay"></div>
         <div class="main__container">
           <img src="images/Asset-1-1.png.webp" alt="Welcome to Jubayr Learning Center" class="main__caption" style="max-width: 400px !important; width: 400px !important; height: auto !important; display: block !important; margin: 0 auto 2rem !important;" />
-          <h1 class="main__title" id="typing-title">
-            <span id="typed-text"></span>
-            <span class="typing-cursor">|</span>
+          <h1 class="main__title">
+            Welcome To Jubayr Dugsi
           </h1>
           <div class="main__text">
             Welcome to our dugsi website. Here you'll find everything you need to know about your child's educational journey at Jubayr Learning Center.
@@ -825,34 +810,7 @@
       window.location.href = 'index.html';
     }
 
-    // Typing Animation Function
-    function typeWriter() {
-      const text = "Welcome To Jubayr Dugsi";
-      const typedElement = document.getElementById('typed-text');
-      const cursor = document.querySelector('.typing-cursor');
-      let index = 0;
-      
-      function type() {
-        if (index < text.length) {
-          typedElement.innerHTML += text.charAt(index);
-          index++;
-          setTimeout(type, 100); // Adjust typing speed (milliseconds)
-        } else {
-          // Optional: restart the animation after a pause
-          setTimeout(() => {
-            typedElement.innerHTML = '';
-            index = 0;
-            type();
-          }, 3000); // Wait 3 seconds before restarting
-        }
-      }
-      
-      // Start the typing animation
-      type();
-    }
 
-    // Start typing animation when page loads
-    window.addEventListener('load', typeWriter);
   </script>
 </body>
 
