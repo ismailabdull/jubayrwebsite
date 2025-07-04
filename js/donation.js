@@ -8,7 +8,7 @@ const stripe = Stripe('pk_test_51RbjWrQmFrd2NqBdcQu6BasrklUCRLiavvmdgnYZr8Vz3GZx
 console.log('✅ Stripe initialized with key:', stripe ? 'SUCCESS' : 'FAILED');
 
 // Server configuration
-const SERVER_URL = window.location.hostname === 'localhost' ? 'http://localhost:8888' : '/api';
+const SERVER_URL = window.location.hostname === 'localhost' ? 'http://localhost:4242' : '/api';
 
 // Global variables
 let elements;
@@ -333,7 +333,7 @@ async function initializeStripeElements() {
             clientSecret = paymentData.clientSecret;
             console.log('✅ Payment intent created successfully for amount:', currentAmount);
             console.log('🔑 Client secret for payment intent:', clientSecret ? 'RECEIVED' : 'MISSING');
-            console.log('�� Client secret type:', typeof clientSecret);
+            console.log('🔑 Client secret type:', typeof clientSecret);
             console.log('🔑 Client secret length:', clientSecret ? clientSecret.length : 0);
             console.log('🔑 Client secret preview:', clientSecret ? clientSecret.substring(0, 20) + '...' : 'N/A');
         }
@@ -456,21 +456,8 @@ async function handleSubmit(e) {
         
         let result;
         
-        if (isSubscription) {
-            // For monthly subscriptions, use confirmSubscription
-            console.log('🔄 Confirming subscription...');
-            result = await stripe.confirmSubscription({
-                elements,
-                confirmParams: {
-                    return_url: `${window.location.origin}/thank-you.html?amount=${finalAmount}&type=${donationType}`,
-                    receipt_email: email,
-                },
-                redirect: 'if_required'
-            });
-        } else {
-            // For one-time payments, use confirmPayment
-            console.log('💳 Confirming payment...');
-            result = await stripe.confirmPayment({
+        // Use Payment Element for both one-time and subscription payments
+        result = await stripe.confirmPayment({
             elements,
             confirmParams: {
                 return_url: `${window.location.origin}/thank-you.html?amount=${finalAmount}&type=${donationType}`,
@@ -478,7 +465,6 @@ async function handleSubmit(e) {
             },
             redirect: 'if_required'
         });
-        }
         
         const { error } = result;
         

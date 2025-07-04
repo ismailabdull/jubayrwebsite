@@ -2307,12 +2307,34 @@ iframe:not(.payment-element iframe):not(#payment-element iframe) {
 .header__logo a,
 .footer__logo a {
   cursor: pointer;
-  text-decoration: none;
 }
 
-.header__logo a:hover,
-.footer__logo a:hover {
-  cursor: pointer;
+/* Typing Animation Styles */
+[data-typing] {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: none; /* Remove any cursor */
+}
+
+[data-typing].typing-completed {
+  white-space: normal;
+  overflow: visible;
+}
+
+/* Prevent any cursor animations */
+[data-typing]::after {
+  display: none !important;
+}
+
+[data-typing]::before {
+  display: none !important;
+}
+
+/* Ensure smooth typing animation */
+[data-typing] {
+  transition: none;
+  animation: none;
 }
 
 /* EXTREMELY AGGRESSIVE: Force remove ALL white space */

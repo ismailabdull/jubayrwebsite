@@ -108,39 +108,176 @@
 }
 
 /* Stripe Elements Styling */
+#payment-element {
+  margin-bottom: 24px;
+}
+
 .payment-element {
-  padding: 20px;
   border: 2px solid #e1e4eb;
   border-radius: 8px;
+  padding: 1rem;
+  background: #f8f9fa;
+}
+
+/* Subscription Management Styles */
+.subscription-management-container {
+  max-width: 600px;
+  margin: 2rem auto;
   background: #fff;
-  margin-bottom: 20px;
-  min-height: 300px;
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(94, 186, 243, 0.15);
+  overflow: hidden;
 }
 
-/* Stripe Elements container */
-#payment-element {
-  min-height: 300px;
-  width: 100%;
-  display: block;
+.subscription-management-title {
+  background-color: #5ebaf3;
+  color: white;
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.subscription-management-content {
+  padding: 2rem;
+}
+
+.subscription-management-content p {
+  margin-bottom: 1.5rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.subscription-lookup-form {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+.subscription-lookup-form .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.manage-subscription-btn {
+  background-color: #5ebaf3;
+  color: white;
   border: none;
-  border-radius: 0;
-  background: transparent;
-  padding: 0;
-  box-sizing: border-box;
-  position: relative;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
-/* Ensure payment element is always visible */
-.payment-element {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+.manage-subscription-btn:hover {
+  background-color: #4a9fd8;
 }
 
-/* Stripe Elements specific styling - REMOVED TO PRESERVE PAYMENT METHOD ICONS */
+.manage-subscription-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.subscription-status {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.subscription-status.success {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.subscription-status.error {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.subscription-status.info {
+  background-color: #d1ecf1;
+  border-color: #17a2b8;
+  color: #0c5460;
+}
+
+.subscription-details {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.subscription-details h4 {
+  margin: 0 0 0.5rem 0;
+  color: #303a4d;
+}
+
+.subscription-details p {
+  margin: 0.25rem 0;
+  color: #666;
+}
+
+.subscription-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.subscription-action-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.subscription-action-btn.primary {
+  background-color: #5ebaf3;
+}
+
+.subscription-action-btn.danger {
+  background-color: #dc3545;
+}
+
+.subscription-action-btn:hover {
+  opacity: 0.9;
+}
+
+/* Subscription Status Indicators */
+.status-active {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.status-cancelled {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.status-incomplete {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.status-past_due {
+  color: #fd7e14;
+  font-weight: 600;
+}
+
+.status-unpaid {
+  color: #dc3545;
+  font-weight: 600;
+}
 
 /* Submit Button */
 .donate__submit-btn {
@@ -228,6 +365,19 @@
   .donation-tab {
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
+  }
+  
+  .subscription-lookup-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .subscription-actions {
+    flex-direction: column;
+  }
+  
+  .subscription-action-btn {
+    text-align: center;
   }
 }
 

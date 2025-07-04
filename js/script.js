@@ -2,6 +2,36 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Initializing all functionality...');
   
+  // --- TYPING ANIMATION ---
+  function initTypingAnimation() {
+    const typingElements = document.querySelectorAll('[data-typing]');
+    
+    typingElements.forEach(element => {
+      const text = element.getAttribute('data-typing');
+      const speed = parseInt(element.getAttribute('data-typing-speed')) || 50; // Default 50ms per character
+      
+      if (text && !element.classList.contains('typing-completed')) {
+        element.textContent = '';
+        element.classList.add('typing-completed');
+        
+        let i = 0;
+        const typeWriter = () => {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+          }
+        };
+        
+        // Start typing animation
+        typeWriter();
+      }
+    });
+  }
+  
+  // Initialize typing animation
+  initTypingAnimation();
+  
   // --- NAVBAR SCROLL EFFECT ---
   const header = document.querySelector('.header');
   let lastScrollTop = 0;

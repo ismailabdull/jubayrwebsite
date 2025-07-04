@@ -215,6 +215,122 @@ app.post('/payment-success', async (req, res) => {
   }
 });
 
+// Customer Portal endpoint for subscription management
+app.post('/create-portal-session', async (req, res) => {
+  try {
+    const { customerId } = req.body;
+
+    console.log('🔗 Creating customer portal session for customer:', customerId);
+
+    if (!customerId) {
+      return res.status(400).json({ 
+        error: 'Customer ID is required' 
+      });
+    }
+
+    // Create a customer portal session
+    const session = await stripe.billingPortal.sessions.create({
+      customer: customerId,
+      return_url: `${req.protocol}://${req.get('host')}/donate.html`,
+    });
+
+    console.log('✅ Customer portal session created:', session.id);
+
+    res.json({
+      url: session.url
+    });
+  } catch (error) {
+    console.error('❌ Error creating customer portal session:', error);
+    res.status(500).json({ 
+      error: 'Failed to create customer portal session',
+      details: error.message 
+    });
+  }
+});
+
+// Get subscription details endpoint
+app.post('/get-subscription-details', async (req, res) => {
+  try {
+    const { customerId } = req.body;
+
+    console.log('📋 Getting subscription details for customer:', customerId);
+
+    if (!customerId) {
+      return res.status(400).json({ 
+        error: 'Customer ID is required' 
+      });
+    }
+
+    // Get customer details
+    const customer = await stripe.customers.retrieve(customerId);
+    
+    // Get active subscriptions for this customer
+    const subscriptions = await stripe.subscriptions.list({
+      customer: customerId,
+      status: 'active',
+      limit: 1,
+      expand: ['data.items.data.price']
+    });
+
+    console.log('✅ Subscription details retrieved:', {
+      customerId: customerId,
+      subscriptionCount: subscriptions.data.length,
+      hasActiveSubscription: subscriptions.data.length > 0
+    });
+
+    res.json({
+      customer: customer,
+      subscription: subscriptions.data[0] || null
+    });
+  } catch (error) {
+    console.error('❌ Error getting subscription details:', error);
+    res.status(500).json({ 
+      error: 'Failed to get subscription details',
+      details: error.message 
+    });
+  }
+});
+
+// Cancel subscription endpoint
+app.post('/cancel-subscription', async (req, res) => {
+  try {
+    const { customerId, subscriptionId } = req.body;
+
+    console.log('❌ Cancelling subscription:', {
+      customerId: customerId,
+      subscriptionId: subscriptionId
+    });
+
+    if (!subscriptionId) {
+      return res.status(400).json({ 
+        error: 'Subscription ID is required' 
+      });
+    }
+
+    // Cancel the subscription at period end
+    const subscription = await stripe.subscriptions.update(subscriptionId, {
+      cancel_at_period_end: true
+    });
+
+    console.log('✅ Subscription cancelled successfully:', {
+      id: subscription.id,
+      status: subscription.status,
+      cancelAtPeriodEnd: subscription.cancel_at_period_end
+    });
+
+    res.json({
+      success: true,
+      subscription: subscription
+    });
+  } catch (error) {
+    console.error('❌ Error cancelling subscription:', error);
+    res.status(500).json({ 
+      error: 'Failed to cancel subscription',
+      details: error.message 
+    });
+  }
+});
+
 // Webhook endpoint to handle Stripe events
 app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) => {
   const sig = req.headers['stripe-signature'];
@@ -235,6 +351,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) =
       console.log('💰 Amount:', paymentIntent.amount / 100);
       console.log('📧 Email:', paymentIntent.receipt_email);
       console.log('🆔 Payment ID:', paymentIntent.id);
+      console.log('🔄 Type:', paymentIntent.metadata?.donation_type || 'unknown');
       console.log('⏰ Time:', new Date().toISOString());
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       break;
@@ -250,6 +367,11 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) =
       console.log('💰 Amount:', subscription.items.data[0].price.unit_amount / 100);
       console.log('⏰ Time:', new Date().toISOString());
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      
+      // Send welcome email with subscription management link
+      if (subscription.status === 'active') {
+        sendSubscriptionWelcomeEmail(subscription);
+      }
       break;
     case 'invoice.payment_succeeded':
       const invoice = event.data.object;
@@ -279,6 +401,53 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) =
 
   res.json({received: true});
 });
+
+// Function to send subscription welcome email
+async function sendSubscriptionWelcomeEmail(subscription) {
+  try {
+    // Get customer details
+    const customer = await stripe.customers.retrieve(subscription.customer);
+    const amount = (subscription.items.data[0].price.unit_amount / 100).toFixed(2);
+    
+    // Create management link
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://yourdomain.com' 
+      : 'http://localhost:4242';
+    const managementUrl = `${baseUrl}/manage-subscription.html?customer=${subscription.customer}`;
+    
+    console.log('📧 Sending subscription welcome email to:', customer.email);
+    console.log('🔗 Management URL:', managementUrl);
+    
+    // In a real implementation, you would send an email here
+    // For now, we'll just log the details
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('📧 SUBSCRIPTION WELCOME EMAIL DETAILS:');
+    console.log('To:', customer.email);
+    console.log('Subject: Welcome to your monthly donation!');
+    console.log('Amount: $' + amount + '/month');
+    console.log('Management Link:', managementUrl);
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    
+    // TODO: Integrate with your email service (SendGrid, Mailgun, etc.)
+    // Example with a hypothetical email service:
+    /*
+    await emailService.send({
+      to: customer.email,
+      subject: 'Welcome to your monthly donation!',
+      html: `
+        <h2>Thank you for your monthly donation!</h2>
+        <p>Your monthly donation of $${amount} has been set up successfully.</p>
+        <p>You can manage your subscription anytime by clicking the link below:</p>
+        <a href="${managementUrl}">Manage My Subscription</a>
+        <p>Thank you for supporting Jubayr Learning Center!</p>
+      `
+    });
+    */
+    
+  } catch (error) {
+    console.error('❌ Error sending subscription welcome email:', error);
+  }
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {

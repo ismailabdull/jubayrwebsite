@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Your Monthly Donation - Jubayr Learning Center</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/donation.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container">
+                <a href="index.html" class="header__logo logo">
+                    <div class="logo-container">
+                        <span class="logo-text">Jubayr Learning Center</span>
+                    </div>
+                </a>
+                <nav class="header__nav nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="about-us.html" class="nav__link">About Us</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="programs.html" class="nav__link">Programs</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="donate.html" class="nav__link">Donate</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="page__donate donate">
+                <div class="donate__container">
+                    <div class="donate__content">
+                        <h2 class="donate__title title">Manage Your Monthly Donation</h2>
+                        <div class="donate__text">
+                            <p>
+                                Thank you for your ongoing support! You can manage your monthly donation settings below.
+                            </p>
+                        </div>
+                        
+                        <!-- Subscription Management Form -->
+                        <div class="subscription-management-container">
+                            <div class="subscription-management-content">
+                                <div id="loading-state" class="subscription-status info">
+                                    <p>Loading your subscription details...</p>
+                                </div>
+                                
+                                <div id="error-state" class="subscription-status error hidden">
+                                    <p>Unable to load subscription details. Please check your link or contact support.</p>
+                                </div>
+                                
+                                <div id="subscription-details" class="subscription-details hidden">
+                                    <h4>Your Monthly Donation</h4>
+                                    <div id="subscription-info">
+                                        <!-- Subscription details will be populated here -->
+                                    </div>
+                                    
+                                    <div class="subscription-actions">
+                                        <button type="button" id="manage-portal-btn" class="subscription-action-btn primary">
+                                            Manage Subscription
+                                        </button>
+                                        <button type="button" id="cancel-subscription-btn" class="subscription-action-btn danger">
+                                            Cancel Subscription
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div id="cancellation-confirmation" class="subscription-status info hidden">
+                                    <h4>Cancel Your Monthly Donation</h4>
+                                    <p>Are you sure you want to cancel your monthly donation? You can always restart it later.</p>
+                                    <div class="subscription-actions">
+                                        <button type="button" id="confirm-cancel-btn" class="subscription-action-btn danger">
+                                            Yes, Cancel My Donation
+                                        </button>
+                                        <button type="button" id="keep-subscription-btn" class="subscription-action-btn">
+                                            Keep My Donation
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div id="success-message" class="subscription-status success hidden">
+                                    <p>Your subscription has been updated successfully!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="donate__info">
+                            <h3 class="donate__subtitle">Your Impact</h3>
+                            <div class="donate__impact">
+                                <div class="donate__impact-item">
+                                    <strong>Monthly Support</strong> helps us plan and sustain our educational programs
+                                </div>
+                                <div class="donate__impact-item">
+                                    <strong>Consistent Funding</strong> allows us to provide quality education year-round
+                                </div>
+                                <div class="donate__impact-item">
+                                    <strong>Long-term Impact</strong> creates lasting change in our students' lives
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer__container">
+                <a href="index.html" class="footer__logo logo">
+                    <div class="logo-container">
+                        <span class="logo-text">Jubayr Learning Center</span>
+                    </div>
+                </a>
+                <div class="footer__copyright">&copy; 2025 Jubayr Learning Center – All Rights Reserved</div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/subscription-management.js"></script>
+</body>
+</html> 
